@@ -1,13 +1,13 @@
 # Microfoon testen op Windows
 
-Deze versie test opname en geluidsniveau, nog geen transcriptie of AI.
+Dit beschrijft de modus **Alleen audiotest**. Voor transcriptie zie [speech.md](speech.md).
 
-1. Download of checkout de branch `feature/modular-foundation`.
+1. Download of checkout de branch `feature/local-speech`.
 2. Open een terminal in de projectmap, in de Python-omgeving die je wilt gebruiken.
 3. Installeer met `python -m pip install -e ".[audio]"`.
 4. Start met `python main.py`.
 5. Klik **Ververs microfoons** en kies je microfoon. De Windows-standaard heeft een label.
-6. Klik **Start luisteren**. Spreek: de meter en verstreken tijd moeten veranderen.
+6. Vink **Alleen audiotest** aan en klik **Start luisteren**. Spreek: de meter en verstreken tijd moeten veranderen.
 7. Controleer of beide gesprekspartners hoorbaar zijn via de meter; deze test zegt
    nog niets over verstaanbaarheid of transcriptiekwaliteit.
 8. Klik **Stop luisteren**. De meter gaat terug naar nul en de buffer wordt gewist.
@@ -30,18 +30,18 @@ Deze versie test opname en geluidsniveau, nog geen transcriptie of AI.
 
 `devices.py` vindt invoerapparaten en controleert de backend. `recorder.py` opent
 mono PCM16 op de eigen samplefrequentie, ontvangt kleine blokken via een begrensde
-queue en berekent RMS-niveau op een achtergrondthread. `buffer.py` bewaart maximaal
-zes fragmenten van vijf seconden. `ui/microphone.py` toont bediening en leest status
+queue en berekent RMS-niveau op een achtergrondthread. `buffer.py` bewaart in audiotestmodus maximaal
+zes fragmenten van vijf seconden; spraakmodus gebruikt een aparte pauzebuffer. `ui/microphone.py` toont bediening en leest status
 elke 100 ms. Geen Tk-aanroepen vanuit de audio-thread.
 
 Het callback-pad slaat geen bestanden op en blokkeert niet op een volle queue.
 Volle queues worden gemeld. Oudere voltooide fragmenten worden normaal vervangen,
-omdat nog geen transcriptieworker is aangesloten. Die worker kan later
-`recorder.pop_chunk()` gebruiken en resamplen naar de frequentie van het STT-model.
+wanneer Alleen audiotest aanstaat; in de spraakmodus worden ze door de worker opgehaald. Die worker gebruikt
+`recorder.pop_chunk()` en resamplen naar de frequentie van het STT-model.
 
 ## Verificatie
 
-20 geautomatiseerde tests controleren consult- en audiogedrag met een gesimuleerde
+42 geautomatiseerde tests controleren consult- en audiogedrag met een gesimuleerde
 backend. Er is in de ontwikkelomgeving geen fysieke microfoon of Windows beschikbaar.
 De echte stream, desktopbediening en Windows-build moeten lokaal worden getest.
 

@@ -1,4 +1,4 @@
-"""Lokale tekstinterface. Geen consultopslag of netwerkverkeer."""
+"""Lokale consultinterface. Modelvoorbereiding en klinische demo zijn gescheiden."""
 import tkinter as tk
 from tkinter import ttk, messagebox
 from ..application import ConsultationService
@@ -9,23 +9,29 @@ from .microphone import MicrophonePanel
 def launch(service: ConsultationService) -> None:
     root = tk.Tk()
     root.title("Reasoning assistent — prototype")
-    root.geometry("1000x900")
-    microphone = MicrophonePanel(root)
-    microphone.pack(padx=16, pady=8, fill="x")
+    root.geometry("1100x950")
+    notebook = ttk.Notebook(root)
+    notebook.pack(fill="both", expand=True)
+    speech_tab = ttk.Frame(notebook)
+    demo_tab = ttk.Frame(notebook)
+    notebook.add(speech_tab, text="Gesprek en transcriptie")
+    notebook.add(demo_tab, text="Tekstdemo klinisch redeneren")
+    microphone = MicrophonePanel(speech_tab)
+    microphone.pack(padx=16, pady=8, fill="both", expand=True)
 
     def close():
         microphone.close()
         root.destroy()
 
     root.protocol("WM_DELETE_WINDOW", close)
-    ttk.Label(root, text="DEMO — microfoontest en tekstprototype; AI nog niet aangesloten",
+    ttk.Label(demo_tab, text="Tekstdemo voor klinisch redeneren — los van het gesproken transcript",
               wraplength=950).pack(padx=16, pady=10, anchor="w")
-    ttk.Label(root, text="Demo-invoer: onderwerp | status | bewijs. Vrije tekst wordt nog niet geïnterpreteerd.",
+    ttk.Label(demo_tab, text="Demo-invoer: onderwerp | status | bewijs. Vrije tekst wordt nog niet geïnterpreteerd.",
               wraplength=950).pack(padx=16, anchor="w")
-    transcript = tk.Text(root, height=12, wrap="word")
+    transcript = tk.Text(demo_tab, height=12, wrap="word")
     transcript.pack(padx=16, pady=8, fill="both", expand=True)
     transcript.insert("1.0", DEMO_TRANSCRIPT)
-    output = tk.Text(root, height=17, wrap="word", state="disabled")
+    output = tk.Text(demo_tab, height=17, wrap="word", state="disabled")
 
     def analyze():
         try:
@@ -44,6 +50,6 @@ def launch(service: ConsultationService) -> None:
         output.insert("1.0", "\n".join(lines))
         output.configure(state="disabled")
 
-    ttk.Button(root, text="Analyseer demo-informatie", command=analyze).pack(padx=16, pady=8, anchor="w")
+    ttk.Button(demo_tab, text="Analyseer demo-informatie", command=analyze).pack(padx=16, pady=8, anchor="w")
     output.pack(padx=16, pady=8, fill="both", expand=True)
     root.mainloop()
