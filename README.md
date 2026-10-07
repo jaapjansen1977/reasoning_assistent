@@ -17,14 +17,16 @@ voorbeeldvragen bij ontbrekende of onduidelijke informatie. Vier toestanden:
 informatie. Uitspraken over anderen of het verleden vullen actuele patiëntfeiten
 niet in. Tegenstrijdige statussen vragen om verduidelijking.
 
-**Dit is een architectuurdemo.** Vrije gesprekstekst wordt nog niet door AI
-geïnterpreteerd; lichamelijke-testadviezen en
+**Dit is een prototype.** De tekstdemo gebruikt expliciete gestructureerde invoer.
+Het nieuwe tabblad **Online AI-proef (fictief)** kan vrije fictieve gesprekstekst
+via een API analyseren en vragen uit de lage-rugmodule voorstellen.
+Zie [online AI proberen](docs/online_ai.md). Lichamelijke-testadviezen en
 verwijsadviezen zijn nog niet geïmplementeerd. De actieve demo gebruikt alleen expliciet
 ongereviewde demonstratievragen, geen klinische richtlijnregels.
 
 Daarnaast is er een [conceptkennisbank voor de lage rug](docs/knowledge/README.md),
-met differentiaal, vervolgvragen en bronnen. Deze is nog niet verbonden aan de
-adviesfunctie en vereist inhoudelijke review.
+met differentiaal, vervolgvragen en bronnen. Deze vereist inhoudelijke review en is alleen verbonden aan de
+expliciete fictieve AI-proef, niet aan klinisch gebruik.
 
 ## Starten op Windows
 
@@ -97,8 +99,10 @@ latere STT/AI-versies worden apart beheerd.
 5. Klinische test-/overleg-/verwijssuggesties met bron, onzekerheid en urgentie.
 6. Windows-distributie en lokale gebruikstest.
 
-De huidige app schrijft geen consulten of audio naar bestanden. Alleen de expliciete
-modeldownload gebruikt internet; gesprekken worden volledig lokaal verwerkt.
+De huidige app schrijft geen consulten of audio naar bestanden. De microfoon en spraakherkenning verwerken gesprekken lokaal; een expliciete
+modeldownload gebruikt internet. In het aparte AI-proeftabblad wordt uitsluitend
+na een klik en fictief-markering de ingevoerde tekst met conceptkennis naar
+OpenAI verstuurd. Die proef is dus geen volledig lokale verwerking.
 In spraakmodus blijven maximaal vier volledige audiofragmenten plus een
 onvolledig fragment in geheugen (standaard maximaal circa 75 seconden); oudere fragmenten worden vervangen.
 Bij Stop wordt resterende audio getranscribeerd en de opnamebuffer geleegd;

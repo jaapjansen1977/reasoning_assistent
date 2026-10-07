@@ -12,7 +12,7 @@ We starten met een brede **conceptmodule voor lage rug**: 30 aandoeningen, syndr
 | `reasoning_assistent/knowledge/regions/index.json` | Beschikbare en geplande regio's |
 | `scripts/knowledge_tools.py` | Referentiecontrole en genereren van leesversies |
 
-De bestanden worden meegenomen bij het installeren van het Python-pakket. De huidige demo en spraakherkenning gebruiken deze nieuwe kennis nog niet. Het aanpassen van een vlag in JSON activeert geen klinisch advies.
+De bestanden worden meegenomen bij het installeren van het Python-pakket. De gestructureerde demo en spraakherkenning gebruiken deze nieuwe kennis niet. Het aparte online AI-proeftabblad gebruikt haar alleen na een expliciete klik voor fictieve vraagselectie. Het aanpassen van een vlag in JSON activeert geen klinisch advies.
 
 ## Inhoud per aandoening
 
@@ -72,6 +72,6 @@ Werk vervolgens de index bij en genereer de leesversie. Bron-ID's zijn lokaal aa
 
 De lage-rugmodule is een eerste inhoudelijke synthese, niet een gevalideerd klinisch product. Met name actuele NHG-inhoud, Nederlandse verwijspaden, zeldzame spoedoorzaken en oudere specifieke bronnen moeten nog door inhoudsdeskundigen worden gecontroleerd. Voor sommige diagnoses is een betrouwbare individuele prognose niet beschikbaar in dit bestand; die is niet ingevuld met schijnzekerheid.
 
-Leg wijzigingen vast met datum, reden en betrokken bronnen in Git. Voor klinische ingebruikname zijn inhoudelijke review, afzonderlijke integratie en toetsing met passende casuïstiek nodig. De huidige conceptschema's blijven data-only; een toekomstige gereviewde productversie krijgt een expliciet nieuw activerings- en validatieproces.
+Leg wijzigingen vast met datum, reden en betrokken bronnen in Git. Voor klinische ingebruikname zijn inhoudelijke review, afzonderlijke integratie en toetsing met passende casuïstiek nodig. De huidige conceptschema's blijven zonder automatische klinische activering; een toekomstige gereviewde productversie krijgt een expliciet nieuw activerings- en validatieproces.
 
 Sla geen patiënttranscripten of patiëntgegevens op in deze kennisbestanden of in GitHub.
