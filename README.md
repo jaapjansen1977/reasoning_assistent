@@ -19,8 +19,12 @@ niet in. Tegenstrijdige statussen vragen om verduidelijking.
 
 **Dit is een architectuurdemo.** Vrije gesprekstekst wordt nog niet door AI
 geïnterpreteerd; lichamelijke-testadviezen en
-verwijsadviezen zijn nog niet geïmplementeerd. De kennis bevat alleen expliciet
+verwijsadviezen zijn nog niet geïmplementeerd. De actieve demo gebruikt alleen expliciet
 ongereviewde demonstratievragen, geen klinische richtlijnregels.
+
+Daarnaast is er een [conceptkennisbank voor de lage rug](docs/knowledge/README.md),
+met differentiaal, vervolgvragen en bronnen. Deze is nog niet verbonden aan de
+adviesfunctie en vereist inhoudelijke review.
 
 ## Starten op Windows
 
