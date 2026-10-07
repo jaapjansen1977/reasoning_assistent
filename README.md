@@ -9,7 +9,8 @@ kennisbronnen en onderbouwde suggesties tonen.
 Een lokaal venster met microfoonkeuze, start-/stopknoppen, geluidsmeter en lokale
 Nederlandse transcriptie via faster-whisper. Modellen: tiny, base en small.
 Zie [spraakherkenning starten](docs/speech.md).
-Audio wordt in fragmenten van vijf seconden tijdelijk in geheugen verzameld.
+Spraakfragmenten verzamelen minstens acht seconden context en worden daarna
+bij voorkeur op een pauze geknipt. Maximum instelbaar: 10, 15 of 20 seconden.
 Daarnaast werkt de tekstdemo met fictieve tekst, expliciet gestructureerde feiten en
 voorbeeldvragen bij ontbrekende of onduidelijke informatie. Vier toestanden:
 `niet_besproken`, `aanwezig`, `ontkend`, `onduidelijk`. Ontkenning is geen ontbrekende
@@ -94,8 +95,8 @@ latere STT/AI-versies worden apart beheerd.
 
 De huidige app schrijft geen consulten of audio naar bestanden. Alleen de expliciete
 modeldownload gebruikt internet; gesprekken worden volledig lokaal verwerkt.
-De laatste maximaal zes volledige audiofragmenten (circa 30 seconden) plus een
-onvolledig fragment blijven in geheugen; oudere fragmenten worden vervangen.
+In spraakmodus blijven maximaal vier volledige audiofragmenten plus een
+onvolledig fragment in geheugen (standaard maximaal circa 75 seconden); oudere fragmenten worden vervangen.
 Bij Stop wordt resterende audio getranscribeerd en de opnamebuffer geleegd;
 bij sluiten wordt resterende audio verworpen. Tekst blijft na Stop zichtbaar. Bij achterstand kan de buffer fragmenten verliezen; dit wordt gemeld. Dit is geen volledige
 consultopname en geen garantie van forensisch wissen uit RAM.

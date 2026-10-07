@@ -9,7 +9,7 @@ from math import sqrt, log10
 from queue import Queue, Empty, Full
 from threading import Event, Lock, RLock, Thread
 from time import monotonic
-from .buffer import ChunkBuffer, AudioChunk
+from .buffer import ChunkBuffer, PauseAwareBuffer, AudioChunk
 from .devices import AudioError, InputDevice, load_backend
 
 
@@ -45,7 +45,7 @@ class MicrophoneRecorder:
     def running(self):
         return self._stream is not None
 
-    def start(self, device: InputDevice):
+    def start(self, device: InputDevice, chunk_settings=None):
         if self.running:
             raise AudioError("Microfoon luistert al.")
         sd = self._backend if self._backend is not None else load_backend()
@@ -53,7 +53,8 @@ class MicrophoneRecorder:
         self._drain = False
         self._finished.clear()
         self._queue = Queue(maxsize=32)
-        self._buffer = ChunkBuffer(device.samplerate)
+        self._buffer = (PauseAwareBuffer(device.samplerate, chunk_settings)
+                        if chunk_settings is not None else ChunkBuffer(device.samplerate))
         self._level_db, self._dropped, self._warning = -60.0, 0, ""
         try:
             sd.check_input_settings(device=device.index, channels=1,

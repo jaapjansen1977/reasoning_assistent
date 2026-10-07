@@ -30,8 +30,8 @@ Dit beschrijft de modus **Alleen audiotest**. Voor transcriptie zie [speech.md](
 
 `devices.py` vindt invoerapparaten en controleert de backend. `recorder.py` opent
 mono PCM16 op de eigen samplefrequentie, ontvangt kleine blokken via een begrensde
-queue en berekent RMS-niveau op een achtergrondthread. `buffer.py` bewaart maximaal
-zes fragmenten van vijf seconden. `ui/microphone.py` toont bediening en leest status
+queue en berekent RMS-niveau op een achtergrondthread. `buffer.py` bewaart in audiotestmodus maximaal
+zes fragmenten van vijf seconden; spraakmodus gebruikt een aparte pauzebuffer. `ui/microphone.py` toont bediening en leest status
 elke 100 ms. Geen Tk-aanroepen vanuit de audio-thread.
 
 Het callback-pad slaat geen bestanden op en blokkeert niet op een volle queue.
@@ -41,7 +41,7 @@ wanneer Alleen audiotest aanstaat; in de spraakmodus worden ze door de worker op
 
 ## Verificatie
 
-33 geautomatiseerde tests controleren consult- en audiogedrag met een gesimuleerde
+42 geautomatiseerde tests controleren consult- en audiogedrag met een gesimuleerde
 backend. Er is in de ontwikkelomgeving geen fysieke microfoon of Windows beschikbaar.
 De echte stream, desktopbediening en Windows-build moeten lokaal worden getest.
 

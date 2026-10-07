@@ -12,7 +12,7 @@ HAS_AUDIO_LIBS = all(importlib.util.find_spec(name) for name in ("numpy", "scipy
 
 from reasoning_assistent.audio.buffer import AudioChunk
 from reasoning_assistent.audio.preprocessing import to_whisper_audio
-from reasoning_assistent.audio.settings import SpeechSettings
+from reasoning_assistent.audio.settings import SpeechSettings, ChunkSettings
 from reasoning_assistent.audio.whisper_backend import FasterWhisperTranscriber, SpeechError, TranscriptResult
 from reasoning_assistent.audio.session import SpeechSession
 from reasoning_assistent.audio.recorder import MicrophoneRecorder
@@ -138,12 +138,12 @@ class SessionTests(unittest.TestCase):
 
     def test_start_requires_ready_model(self):
         with self.assertRaises(RuntimeError):
-            self.session.start(self.device)
+            self.session.start(self.device, chunk_settings=ChunkSettings(min_seconds=1, max_seconds=5))
         self.assertFalse(self.recorder.running)
 
     def test_live_text_and_stop_preserves_short_tail(self):
         self.prepare()
-        self.session.start(self.device)
+        self.session.start(self.device, chunk_settings=ChunkSettings(min_seconds=1, max_seconds=5))
         self.backend.stream.emit([1000] * 500)
         self.wait_for(lambda: len(self.engine.chunks) == 1)
         self.backend.stream.emit([1000] * 30)
@@ -172,7 +172,7 @@ class SessionTests(unittest.TestCase):
             release.wait(2)
             return original(chunk)
         self.engine.transcribe_chunk = slow
-        self.session.start(self.device)
+        self.session.start(self.device, chunk_settings=ChunkSettings(min_seconds=1, max_seconds=5))
         self.backend.stream.emit([1000] * 500)
         self.assertTrue(entered.wait(2))
         self.session.close()
@@ -186,7 +186,7 @@ class SessionTests(unittest.TestCase):
         def broken(chunk):
             raise SpeechError('Model failure')
         self.engine.transcribe_chunk = broken
-        self.session.start(self.device)
+        self.session.start(self.device, chunk_settings=ChunkSettings(min_seconds=1, max_seconds=5))
         self.backend.stream.emit([1000] * 500)
         self.wait_for(lambda: not self.session.busy)
         events = list(self.session.events())

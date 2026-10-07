@@ -26,3 +26,19 @@ class SpeechSettings:
     def model_path(self) -> Path:
         root = self.model_root if self.model_root is not None else default_model_root()
         return root / self.model_name
+
+
+@dataclass(frozen=True)
+class ChunkSettings:
+    """Verzamel context; knip vanaf 8 s bij een pauze, uiterlijk bij maximum."""
+    min_seconds: float = 8.0
+    max_seconds: float = 15.0
+    pause_seconds: float = 0.8
+    silence_db: float = -42.0
+    max_chunks: int = 4
+
+    def __post_init__(self):
+        if not 0 < self.min_seconds <= self.max_seconds <= 30:
+            raise ValueError("Kies 0 < minimum <= maximum <= 30 seconden.")
+        if self.pause_seconds <= 0 or self.max_chunks < 1 or not -100 <= self.silence_db < 0:
+            raise ValueError("Ongeldige pauze-/bufferinstellingen.")

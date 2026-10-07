@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from queue import Queue, Empty
 from threading import Event, Thread
 from .recorder import MicrophoneRecorder
+from .settings import ChunkSettings
 from .whisper_backend import FasterWhisperTranscriber
 
 
@@ -58,14 +59,17 @@ class SpeechSession:
         self._worker = Thread(target=work, name="speech-model", daemon=True)
         self._worker.start()
 
-    def start(self, device, transcribe=True):
+    def start(self, device, transcribe=True, chunk_settings=None):
         if self.busy or self._closed:
             raise RuntimeError("Wacht tot de huidige taak klaar is.")
         if transcribe and self.transcriber is None:
             raise RuntimeError("Laad eerst een spraakmodel of kies Alleen audiotest.")
         self._stop.clear()
         self._cancel.clear()
-        self.recorder.start(device)
+        if transcribe:
+            self.recorder.start(device, chunk_settings=chunk_settings or ChunkSettings())
+        else:
+            self.recorder.start(device)
         self._worker = Thread(target=self._run, args=(transcribe,), name="speech-transcript", daemon=True)
         self._worker.start()
 

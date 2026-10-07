@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from ..audio.devices import AudioError, list_input_devices
-from ..audio.settings import SpeechSettings
+from ..audio.settings import SpeechSettings, ChunkSettings
 from ..audio.session import SpeechSession
 
 
@@ -26,7 +26,7 @@ class MicrophonePanel(ttk.LabelFrame):
         choices.grid(row=1, column=0, columnspan=2, padx=8, sticky="w")
         ttk.Label(choices, text="Spraakmodel:").pack(side="left")
         self.model = ttk.Combobox(choices, values=("tiny", "base", "small"), state="readonly", width=8)
-        self.model.set("base")
+        self.model.set("small")
         self.model.pack(side="left", padx=8)
         self.model.bind("<<ComboboxSelected>>", lambda event: self._controls())
         self.load_button = ttk.Button(choices, text="Laad lokaal model", command=lambda: self.prepare(False))
@@ -37,34 +37,41 @@ class MicrophonePanel(ttk.LabelFrame):
         self.test_button = ttk.Checkbutton(choices, text="Alleen audiotest", variable=self.audio_only,
                                           command=self._controls)
         self.test_button.pack(side="left", padx=8)
+        duration_row = ttk.Frame(self)
+        duration_row.grid(row=2, column=0, columnspan=2, padx=8, sticky="w")
+        ttk.Label(duration_row, text="Max. fragmentduur (s):").pack(side="left")
+        self.duration = ttk.Combobox(duration_row, values=("10", "15", "20"), state="readonly", width=5)
+        self.duration.set("15")
+        self.duration.pack(side="left", padx=8)
+        ttk.Label(duration_row, text="Vanaf 8 s bij voorkeur knippen op een pauze.").pack(side="left")
         self.start_button = ttk.Button(self, text="Start luisteren", command=self.start, state="disabled")
-        self.start_button.grid(row=2, column=0, padx=8, pady=5, sticky="w")
+        self.start_button.grid(row=3, column=0, padx=8, pady=5, sticky="w")
         self.stop_button = ttk.Button(self, text="Stop luisteren", command=self.stop, state="disabled")
-        self.stop_button.grid(row=2, column=1, padx=8)
+        self.stop_button.grid(row=3, column=1, padx=8)
         self.meter = ttk.Progressbar(self, maximum=60)
-        self.meter.grid(row=3, column=0, columnspan=2, padx=8, pady=5, sticky="ew")
+        self.meter.grid(row=4, column=0, columnspan=2, padx=8, pady=5, sticky="ew")
         self.status = tk.StringVar(value="Ververs microfoons. Download het model eenmaal, daarna lokaal laden.")
         self.speech_status = tk.StringVar(value="Gesprek blijft lokaal. Alleen de modeldownload gebruikt internet.")
         self.warning = tk.StringVar(value="")
-        for row, variable in ((4, self.status), (5, self.speech_status), (6, self.warning)):
+        for row, variable in ((5, self.status), (6, self.speech_status), (7, self.warning)):
             ttk.Label(self, textvariable=variable, wraplength=900).grid(
                 row=row, column=0, columnspan=2, padx=8, pady=2, sticky="w")
         ttk.Label(self, text="Transcript — controleer herkenningsfouten; sprekerherkenning is nog niet aanwezig.").grid(
-            row=7, column=0, columnspan=2, padx=8, pady=4, sticky="w")
+            row=8, column=0, columnspan=2, padx=8, pady=4, sticky="w")
         frame = ttk.Frame(self)
-        frame.grid(row=8, column=0, columnspan=2, padx=8, sticky="nsew")
+        frame.grid(row=9, column=0, columnspan=2, padx=8, sticky="nsew")
         self.transcript = tk.Text(frame, height=7, wrap="word")
         scroll = ttk.Scrollbar(frame, command=self.transcript.yview)
         self.transcript.configure(yscrollcommand=scroll.set)
         scroll.pack(side="right", fill="y")
         self.transcript.pack(fill="both", expand=True)
         self.clear_button = ttk.Button(self, text="Wis transcript", command=lambda: self.transcript.delete("1.0", "end"))
-        self.clear_button.grid(row=9, column=0, padx=8, pady=5, sticky="w")
+        self.clear_button.grid(row=10, column=0, padx=8, pady=5, sticky="w")
         ttk.Label(self, text="Stop verwerkt ook het laatste korte audiofragment. Sluiten verwerpt resterende audio. "
                   "Tekst en audio worden niet naar bestanden geschreven.", wraplength=900).grid(
-            row=10, column=0, columnspan=2, padx=8, pady=4, sticky="w")
+            row=11, column=0, columnspan=2, padx=8, pady=4, sticky="w")
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(8, weight=1)
+        self.rowconfigure(9, weight=1)
         self._controls()
         self._poll()
 
@@ -74,6 +81,7 @@ class MicrophonePanel(ttk.LabelFrame):
             widget.configure(state="disabled" if busy else "normal")
         self.selector.configure(state="disabled" if busy else "readonly")
         self.model.configure(state="disabled" if busy else "readonly")
+        self.duration.configure(state="disabled" if busy else "readonly")
         ready = self.session.transcriber is not None and self._prepared_model == self.model.get()
         can_start = bool(self.devices) and not busy and (self.audio_only.get() or ready)
         self.start_button.configure(state="normal" if can_start else "disabled")
@@ -114,7 +122,8 @@ class MicrophonePanel(ttk.LabelFrame):
         if not 0 <= index < len(self.devices):
             return
         try:
-            self.session.start(self.devices[index], transcribe=not self.audio_only.get())
+            self.session.start(self.devices[index], transcribe=not self.audio_only.get(),
+                               chunk_settings=ChunkSettings(max_seconds=float(self.duration.get())))
         except Exception as exc:
             self.status.set(str(exc))
             messagebox.showerror("Opname starten", str(exc))
@@ -122,7 +131,7 @@ class MicrophonePanel(ttk.LabelFrame):
         self.warning.set("")
         self._busy_ui = self._recording_ui = True
         self.speech_status.set("Alleen audiotest." if self.audio_only.get()
-                               else "Luistert. Eerste tekst na ongeveer vijf seconden audio plus verwerkingstijd.")
+                               else f"Luistert. Context verzamelen: 8–{self.duration.get()} s plus verwerkingstijd.")
         self._controls()
 
     def stop(self):
@@ -136,7 +145,9 @@ class MicrophonePanel(ttk.LabelFrame):
             return
         for event in self.session.events():
             if event.kind == "text":
-                self.transcript.insert("end", event.text + "\n")
+                existing = self.transcript.get("1.0", "end-1c")
+                separator = " " if existing and not existing[-1].isspace() else ""
+                self.transcript.insert("end", separator + event.text)
                 self.transcript.see("end")
             elif event.kind == "warning":
                 self.warning.set(event.text)
