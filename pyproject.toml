@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reasoning-assistent"
+version = "0.2.0"
+description = "Modulaire lokale consultassistent voor fysiotherapie"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+audio = ["sounddevice>=0.5.1,<0.6"]
+
+[project.scripts]
+reasoning-assistent = "reasoning_assistent.main:main"
+
+[tool.setuptools.packages.find]
+include = ["reasoning_assistent*"]
+
+[tool.setuptools.package-data]
+"reasoning_assistent.knowledge" = ["*.json"]

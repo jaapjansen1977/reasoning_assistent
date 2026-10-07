@@ -1,0 +1,25 @@
+{
+  "source": {
+    "title": "Eigen demonstratievragen — geen klinische richtlijn",
+    "version": "0.1",
+    "reference": "docs/architecture.md",
+    "clinically_reviewed": false
+  },
+  "questions": [
+    {
+      "id": "question_hulpvraag",
+      "topic": "hulpvraag",
+      "question": "Wat wilt u met de behandeling weer kunnen doen?"
+    },
+    {
+      "id": "question_beloop",
+      "topic": "beloop",
+      "question": "Hoe zijn de klachten in de tijd veranderd?"
+    },
+    {
+      "id": "question_beperkingen",
+      "topic": "beperkingen",
+      "question": "Welke activiteiten worden door de klachten beperkt?"
+    }
+  ]
+}
