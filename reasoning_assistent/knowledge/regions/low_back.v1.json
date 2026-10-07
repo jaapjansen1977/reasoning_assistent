@@ -1,0 +1,2191 @@
+{
+  "schema_version": "1.0",
+  "id": "low_back",
+  "title": "Lage rug, bekken en gerefereerde klachten: differentiaal en anamneseleidraad",
+  "version": "0.1.0",
+  "language": "nl-NL",
+  "created_on": "2026-10-07",
+  "status": "draft_requires_clinical_review",
+  "activation": {
+    "clinically_reviewed": false,
+    "automatic_advice_enabled": false,
+    "reviewer": null,
+    "review_date": null
+  },
+  "scope": {
+    "population": "Volwassenen in fysiotherapeutische eerstelijnscontext; geen zelfstandige diagnose- of triageapplicatie.",
+    "coverage": "Brede eerste conceptmodule; niet uitputtend.",
+    "exclusions": [
+      "Kinderen en adolescenten vereisen aanvullende pediatrische veiligheidsmodule",
+      "Postoperatieve revalidatie, implantaatcomplicaties en specifieke oncologische behandelprotocollen",
+      "Alle buik-, gynaecologische, urologische en heuppathologieën als afzonderlijke volledige modules",
+      "Prescriptieve medicatie-, operatie- of beeldvormingsbeslissingen"
+    ],
+    "known_gaps": [
+      "Actuele volledige NHG-standaarden niet toegankelijk tijdens controle; Nederlandse medische verwijspaden nog door inhoudsdeskundige harmoniseren",
+      "Sommige zeldzame spoedpaden zijn alleen door algemene richtlijnen ondersteund; afzonderlijke actuele bronnen toevoegen",
+      "Isthmische spondylolisthesis en oudere stenose/parsbronnen nader actualiseren",
+      "Geen gevalideerde waarschijnlijkheidsberekening, testcombinatie-algoritme of volledigheidsscore",
+      "Geen automatische negatieve conclusie uit afwezige transcriptinformatie"
+    ]
+  },
+  "ai_rules": [
+    "Gebruik dit bestand om conditioneel vragen voor te stellen, niet om zelfstandig diagnoses te stellen",
+    "Niet besproken betekent onbekend, nooit ontkend",
+    "Een vraag van de therapeut is geen patiëntantwoord; voorbeeld, hypothese en familiegeschiedenis niet als actuele patiëntbevinding extraheren",
+    "Bewaar letterlijk transcriptbewijs, spreker, subject, datum/tijd en nieuw versus bestaand; bij negatie- of transcriptietwijfel eerst verifiëren",
+    "Veiligheidssignalen gaan voor volledigheid: geen onderzoek of lange checklist laten wachten op plausibele spoed",
+    "Geen aantal vinkjes, symptoomtelling of bronloze kanspercentages gebruiken als diagnose",
+    "Onderzoeksbevindingen alleen opslaan als daadwerkelijk uitgevoerd en expliciet beschreven; nooit uit spraak afleiden dat kracht/reflexen normaal zijn",
+    "Verworpen hypotheses met reden en datum bewaren; bij verandering heropenen",
+    "Risicofactor, prognostische factor, teken en behandelbare factor zijn verschillende rollen",
+    "Geen algemene psychosociale verklaring gebruiken om medische pathologie uit te sluiten",
+    "Een expliciete ontkenning of normaal onderzoek kan een specifieke aandoening niet altijd uitsluiten",
+    "Advies toont reden, relevante ontbrekende informatie, urgentie, onzekerheid en bron; fysiotherapeut beslist",
+    "Onbekende regio, uitgesloten populatie of dekkingsgat expliciet aangeven en menselijke beoordeling vragen"
+  ],
+  "evidence_contract": {
+    "states": [
+      "not_discussed",
+      "present",
+      "denied",
+      "unclear",
+      "not_applicable"
+    ],
+    "required_fields": [
+      "topic_id",
+      "state",
+      "speaker",
+      "subject",
+      "evidence_quote",
+      "observed_at",
+      "time_context",
+      "verification"
+    ],
+    "time_context_values": [
+      "new",
+      "worsening",
+      "stable_existing",
+      "historical",
+      "unknown"
+    ],
+    "verification_values": [
+      "transcript_only",
+      "clinician_confirmed",
+      "uncertain_transcription"
+    ],
+    "rules": [
+      "not_applicable vereist expliciete klinische motivering",
+      "not_discussed heeft geen evidence_quote; andere states vereisen bewijs of expliciete cliniciannotitie",
+      "Bewaar tegenstrijdige uitspraken en markeer unclear; overschrijf niet stilzwijgend",
+      "Geen gevoelige onderwerpen afdwingen zonder respectvolle klinische afweging",
+      "Geen patiëntgegevens in de kennisbestanden of GitHub opslaan"
+    ]
+  },
+  "shared_profiles": [
+    {
+      "id": "general_lbp",
+      "title": "Algemene prognostische en behandelbare context voor LBP/LRS",
+      "applies_to": "Aspecifieke LBP/LRS waar klinisch passend; niet als universeel prognosemodel bij infectie, kanker, fractuur of viscerale ziekte.",
+      "prognostic_factors": [
+        "Eerdere episoden, hoge pijn-/beperkingslast en beenpijn",
+        "Algemene gezondheid en kwaliteit van leven",
+        "Stress, bewegingsangst, depressieve symptomen, passieve coping en negatieve herstelverwachtingen",
+        "Fysiek zwaar werk, werkomgeving en tevredenheid"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Bewegen en functionele belastbaarheid via passende oefenopbouw",
+        "Voorlichting, verwachtingen, zelfmanagement en gedrag met patiënt afstemmen",
+        "Werk-/activiteitsaanpassingen en steun waar beïnvloedbaar",
+        "Psychologische ondersteuning indien passend en met instemming"
+      ],
+      "limitations": [
+        "Prognostische associaties zijn geen bewijs van individuele oorzaak",
+        "Niet elke factor is door fysiotherapie te veranderen",
+        "Geen vragenlijst als zelfstandige beslissing of exacte herstelvoorspelling"
+      ],
+      "source_ids": [
+        "KNGF",
+        "NG59"
+      ]
+    }
+  ],
+  "mechanism_context": [
+    {
+      "id": "nociplastic_context",
+      "title": "Mogelijke nociplastische bijdrage, los van een weefsel-DD",
+      "clues": [
+        "Persisterende regionale/multifocale pijn met klinisch te beoordelen overgevoeligheid",
+        "Niet volledig door nociceptieve of neuropathische mechanismen verklaard"
+      ],
+      "assessment": [
+        "Gezamenlijk mechanismeonderzoek door clinicus; transcript alleen onvoldoende",
+        "Overweeg slaap, vermoeidheid en belastingervaring als context zonder daarmee somatische oorzaken te verwerpen"
+      ],
+      "limitations": [
+        "Psychologische stress of hoge CSI-score stelt geen nociplastische diagnose",
+        "Kan samen voorkomen met nociceptieve of neuropathische processen"
+      ],
+      "source_ids": [
+        "NOCIPLASTIC"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "onset",
+      "text": "Wanneer begon de pijn, wat gebeurde er toen en hoe is het sindsdien veranderd?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "distribution",
+      "text": "Waar voelt u de pijn precies en trekt deze door naar bil, lies, been, buik of flank?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "function",
+      "text": "Welke activiteiten, werk, sport, zelfzorg en slaap lukken minder goed; wat wilt u weer kunnen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "load",
+      "text": "Welke bewegingen, houdingen en belastingen veranderen de klachten, en wat gebeurt er daarna?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "history",
+      "text": "Heeft u dit eerder gehad, welke diagnoses of onderzoeken zijn gedaan en wat hielp toen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "medical",
+      "text": "Welke ziekten, operaties, medicijnen en recente wijzigingen zijn relevant? Denk ook aan corticosteroïden en bloedverdunners.",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "course",
+      "text": "Zijn de klachten stabiel, herstellend of toenemend, en wat is sinds de vorige beoordeling veranderd?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "trauma",
+      "text": "Was er een val, ongeval, botsing of andere plotselinge belasting; hoe groot was die?",
+      "ask_when": "basisonderzoek",
+      "purpose": "mogelijke fractuur/trauma",
+      "priority": "routine",
+      "source_ids": [
+        "TRAUMA",
+        "NOGG"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "bone",
+      "text": "Zijn er eerdere breuken, osteoporose, langdurig corticosteroïdgebruik of recent lengteverlies?",
+      "ask_when": "basisonderzoek",
+      "purpose": "botkwetsbaarheid",
+      "priority": "routine",
+      "source_ids": [
+        "NOGG"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "cancer",
+      "text": "Heeft u kanker gehad of nu kanker, onbedoeld gewichtsverlies of een eerdere onverklaarde fractuur?",
+      "ask_when": "basisonderzoek",
+      "purpose": "medische differentiaal",
+      "priority": "routine",
+      "source_ids": [
+        "MSCC",
+        "MYELOMA"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "infection",
+      "text": "Heeft u koorts of voelt u zich ziek; waren er recent infecties, ingrepen of verminderde afweer?",
+      "ask_when": "basisonderzoek",
+      "purpose": "infectieuze context",
+      "priority": "routine",
+      "source_ids": [
+        "INFECTION"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "night",
+      "text": "Wat gebeurt er ’s nachts: komt de pijn bij draaien, wordt u wakker, en verandert zij door opstaan of bewegen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "onderscheiden context van nachtelijke pijn",
+      "priority": "routine",
+      "source_ids": [
+        "SPA",
+        "MSCC"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "leg",
+      "text": "Heeft u beenpijn, tintelingen of een doof gevoel; waar precies, en aan één of beide kanten?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "LRS"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "weakness",
+      "text": "Merkt u nieuwe of toenemende krachtsvermindering, struikelen of moeite met op tenen of hielen staan?",
+      "ask_when": "basisonderzoek",
+      "purpose": "neurologische verandering",
+      "priority": "safety",
+      "source_ids": [
+        "LRS",
+        "CES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "bladder",
+      "text": "Is het plassen veranderd: beginnen, aandrang, gevoel van de straal, leegplassen of urineverlies?",
+      "ask_when": "basisonderzoek",
+      "purpose": "nieuwe/verergerende sacrale neurologische symptomen",
+      "priority": "safety",
+      "source_ids": [
+        "CES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "saddle",
+      "text": "Is het gevoel rond geslachtsdelen, anus of binnenkant van de bovenbenen veranderd, bijvoorbeeld bij afvegen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "sacrale sensibiliteit",
+      "priority": "safety",
+      "source_ids": [
+        "CES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "bowel",
+      "text": "Is de ontlasting veranderd: gevoel van een volle endeldarm, passage voelen of controle verliezen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "sacrale functie; onderscheid met gewone obstipatie nodig",
+      "priority": "safety",
+      "source_ids": [
+        "CES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "sexual",
+      "text": "Is sinds de rug-/beenklachten het gevoel of functioneren bij seksualiteit veranderd?",
+      "ask_when": "basisonderzoek",
+      "purpose": "sacrale functie",
+      "priority": "safety",
+      "source_ids": [
+        "CES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "walking",
+      "text": "Hoe ver kunt u lopen, waar ontstaat de pijn en helpt stilstaan, zitten of vooroverbuigen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "LRS",
+        "PAD",
+        "STENOSIS"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "vascular",
+      "text": "Heeft u vaatziekte, een bekend aneurysma, diabetes, hoge bloeddruk of een rookgeschiedenis?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "AAA",
+        "PAD"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "abdomen",
+      "text": "Zijn er ook buik- of flankklachten, plots hevige pijn, flauwvallen, zweten of ernstige misselijkheid?",
+      "ask_when": "basisonderzoek",
+      "purpose": "extravertebrale spoedcontext",
+      "priority": "safety",
+      "source_ids": [
+        "AAA",
+        "STONES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "urinary",
+      "text": "Heeft u pijn bij plassen, vaker plassen, bloed in de urine of flankpijn met koorts?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "PYELONEPHRITIS",
+        "STONES"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "inflammatory",
+      "text": "Begonnen de klachten jong, verbeteren ze door bewegen, en zijn er psoriasis, darmontsteking, oogontsteking of gewrichts-/peesklachten?",
+      "ask_when": "persisterende of mogelijk inflammatoire klachten",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "SPA"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "family",
+      "text": "Komen spondyloartritis, psoriasis of vergelijkbare inflammatoire klachten in de familie voor?",
+      "ask_when": "mogelijk inflammatoir",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "SPA"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "hip",
+      "text": "Heeft u lies-/heuppijn, moeite met schoenen aantrekken of pijn bij lopen, heupbuigen of draaien?",
+      "ask_when": "mogelijke heupbron",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "OA",
+        "FAI"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "lateralhip",
+      "text": "Zit de pijn aan de buitenzijde van de heup en wat gebeurt er bij zijligging, traplopen of op één been staan?",
+      "ask_when": "laterale heuppijn",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "GLUTEAL"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "training",
+      "text": "Is de trainingsbelasting recent toegenomen; hoeveel herstel is er en zijn voeding of menstruatie veranderd?",
+      "ask_when": "sportbelasting of vermoeden stressfractuur",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "SACRUM",
+        "PARS"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "pregnancy",
+      "text": "Is zwangerschap mogelijk, bent u zwanger of recent bevallen, en zijn er ook buikpijn of bloedverlies?",
+      "ask_when": "indien klinisch relevant; vraag respectvol naar mogelijkheid, geen aanname uit gender",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "PGP",
+        "ECTOPIC"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "cycle",
+      "text": "Is er samenhang met menstruatie, bekkenpijn, seks, ontlasting of plassen; zijn de klachten cyclisch?",
+      "ask_when": "relevante bekken-/cyclische klachten",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "ENDOMETRIOSIS"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "skin",
+      "text": "Is er branderigheid, aanraakpijn of huiduitslag/blaasjes in een strook aan één kant?",
+      "ask_when": "mogelijke dermatomale huid-/zenuwpijn",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "ZOSTER"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "expectations",
+      "text": "Wat denkt u dat er aan de hand is en wat verwacht u van herstel en behandeling?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "KNGF"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "fear",
+      "text": "Welke bewegingen vermijdt u, en maakt u zich zorgen dat bewegen schade geeft?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "KNGF"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "coping",
+      "text": "Wat doet u bij pijn, wat helpt, en hoe lukt het om activiteiten te verdelen?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "KNGF"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "psychosocial",
+      "text": "Welke stress, somberheid, ondersteuning of problemen thuis of op werk beïnvloeden uw herstel?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "KNGF"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "work",
+      "text": "Wat vraagt uw werk fysiek, hoe is de steun op het werk en welke aanpassingen zijn mogelijk?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [
+        "KNGF"
+      ],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "sleep",
+      "text": "Hoe slaapt u en welke factoren verstoren uw slaap?",
+      "ask_when": "basisonderzoek",
+      "purpose": "ervaren herstel en functioneren; geen zelfstandige diagnose",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    },
+    {
+      "id": "goals",
+      "text": "Wat zijn uw belangrijkste doelen, voorkeuren en praktische belemmeringen voor behandeling?",
+      "ask_when": "basisonderzoek",
+      "purpose": "klinische context",
+      "priority": "routine",
+      "source_ids": [],
+      "origin": "eigen operationalisering; geen gevalideerde vragenlijst",
+      "follow_up": "Bij een relevant antwoord: sinds wanneer, nieuw/veranderd, een- of tweezijdig, ernst, verloop en eerdere beoordeling vastleggen."
+    }
+  ],
+  "conditions": [
+    {
+      "id": "nonspecific",
+      "name": "Aspecifieke lagerugpijn",
+      "category": "syndroom",
+      "diagnostic_clues": [
+        "Rugpijn met wisselend mechanisch patroon zonder voldoende aanwijzingen voor specifieke pathologie; eventueel niet-radiculaire gerefereerde pijn"
+      ],
+      "risk_factors": [
+        "Eerdere episoden en belastingscontext zijn relevant maar verklaren de individuele pijnbron niet"
+      ],
+      "question_ids": [
+        "onset",
+        "distribution",
+        "function",
+        "load",
+        "history",
+        "medical",
+        "course",
+        "trauma",
+        "bone",
+        "cancer",
+        "infection",
+        "night",
+        "leg",
+        "weakness",
+        "bladder",
+        "saddle",
+        "bowel",
+        "sexual",
+        "expectations",
+        "fear",
+        "coping",
+        "psychosocial",
+        "work",
+        "sleep",
+        "goals"
+      ],
+      "physical_assessment": [
+        "Functionele taken, actief bewegen en belastbaarheid observeren",
+        "Gericht neurologisch of heup-/vaatonderzoek indien klachten daartoe aanleiding geven"
+      ],
+      "prognostic_factors": [
+        "Algemene LBP/LRS-factoren uit profiel general_lbp uitsluitend waar passend; geen aandoeningsspecifieke kans of hersteltijd uit dit bestand."
+      ],
+      "therapeutically_modifiable_factors": [
+        "Zie general_lbp-profiel; passend bewegen, herstelverwachtingen, zelfmanagement en werkparticipatie"
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Conservatieve begeleiding als klinische beoordeling dit ondersteunt; bij afwijkend verloop of nieuwe signalen differentiaal opnieuw beoordelen.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Werkdiagnose; geen diagnose uitsluitend op grond van ontbrekende transcriptinformatie",
+        "Aspecifiek betekent niet ingebeeld",
+        "Routinebeeldvorming levert meestal geen passend antwoord zonder gerichte indicatie"
+      ],
+      "source_ids": [
+        "KNGF",
+        "NG59",
+        "REDFLAGS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "disc_hypothesis",
+      "name": "Mogelijk discusgerelateerde nociceptieve pijn",
+      "category": "pijnbronhypothese",
+      "diagnostic_clues": [
+        "Rug-/bilpijn waarbij flexie, zitten of herhaalde beweging invloed hebben; centralisatie kan klinisch relevant zijn"
+      ],
+      "risk_factors": [
+        "Geen gevalideerde individuele risicoscore in deze module"
+      ],
+      "question_ids": [
+        "onset",
+        "distribution",
+        "load",
+        "leg",
+        "weakness",
+        "course"
+      ],
+      "physical_assessment": [
+        "Herhaalde bewegingen alleen als veilig en functioneel relevant; respons vastleggen",
+        "Neurologisch onderzoek bij uitstraling"
+      ],
+      "prognostic_factors": [
+        "Algemene LBP/LRS-factoren uit profiel general_lbp uitsluitend waar passend; geen aandoeningsspecifieke kans of hersteltijd uit dit bestand."
+      ],
+      "therapeutically_modifiable_factors": [
+        "Na veiligheidsbeoordeling: doelen, activiteit en belastbaarheid samen afstemmen; niet elke gevonden factor is oorzakelijk of behandelbaar."
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Behandel het klinische functioneren; medische herbeoordeling bij neurologische verandering of onvoldoende verklaard verloop.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Dit patroon bewijst geen discogene pijn",
+        "Een discusafwijking op MRI is niet automatisch de pijnbron",
+        "Centralisatie is geen toestemming om rode vlaggen te negeren"
+      ],
+      "source_ids": [
+        "STRUCTURE",
+        "LRS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "facet_hypothesis",
+      "name": "Mogelijk facetgerelateerde pijn",
+      "category": "pijnbronhypothese",
+      "diagnostic_clues": [
+        "Lokale of gerefereerde rugpijn, soms bij extensie/rotatie"
+      ],
+      "risk_factors": [
+        "Degeneratieve bevindingen kunnen bestaan zonder klachten"
+      ],
+      "question_ids": [
+        "distribution",
+        "load",
+        "course",
+        "leg"
+      ],
+      "physical_assessment": [
+        "Beweeg- en functieonderzoek gericht op reproduceerbare klachten; geen unieke facettest"
+      ],
+      "prognostic_factors": [
+        "Algemene LBP/LRS-factoren uit profiel general_lbp uitsluitend waar passend; geen aandoeningsspecifieke kans of hersteltijd uit dit bestand."
+      ],
+      "therapeutically_modifiable_factors": [
+        "Na veiligheidsbeoordeling: doelen, activiteit en belastbaarheid samen afstemmen; niet elke gevonden factor is oorzakelijk of behandelbaar."
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Conservatief indien passend bij gehele beoordeling; specialistische diagnostiek alleen bij een gerichte medische vraag.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Extensie-rotatiepijn, drukpijn en beeldvorming stellen geen betrouwbare zelfstandige facetdiagnose",
+        "Geen automatische invasieve behandeling adviseren"
+      ],
+      "source_ids": [
+        "STRUCTURE"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "si_hypothesis",
+      "name": "Mogelijk sacro-iliacaal gerelateerde pijn",
+      "category": "pijnbronhypothese",
+      "diagnostic_clues": [
+        "Pijn rond achterste bekken/bil met belasting; overlap met heup, rug en inflammatoire klachten"
+      ],
+      "risk_factors": [
+        "Zwangerschap en belasting zijn context, geen bewijs voor mechanische SI-pijn"
+      ],
+      "question_ids": [
+        "distribution",
+        "load",
+        "hip",
+        "inflammatory",
+        "pregnancy",
+        "trauma"
+      ],
+      "physical_assessment": [
+        "Een passende pijnprovocatietestcluster kan verdenking ondersteunen; afspraken over uitvoering en klachtenherkenning nodig"
+      ],
+      "prognostic_factors": [
+        "Algemene LBP/LRS-factoren uit profiel general_lbp uitsluitend waar passend; geen aandoeningsspecifieke kans of hersteltijd uit dit bestand."
+      ],
+      "therapeutically_modifiable_factors": [
+        "Na veiligheidsbeoordeling: doelen, activiteit en belastbaarheid samen afstemmen; niet elke gevonden factor is oorzakelijk of behandelbaar."
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Begeleiding bij passend klinisch beeld; bij inflammatoire of fractuurverdenking medische beoordeling.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Positieve cluster bevestigt SI als pijnbron onvoldoende",
+        "Geen diagnose van scheefstand of bekkeninstabiliteit uit palpatie",
+        "Geen gelijkstelling van mechanische SI-pijn en sacro-iliitis"
+      ],
+      "source_ids": [
+        "SI",
+        "STRUCTURE"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "lrs",
+      "name": "Lumbosacraal radiculair syndroom / radiculopathie",
+      "category": "neurologisch",
+      "diagnostic_clues": [
+        "Uitstralende beenpijn met mogelijk dermatomale sensibiliteitsverandering",
+        "Bij radiculopathie ook objectiveerbare neurologische functiestoornis; pijn alleen bewijst dat niet"
+      ],
+      "risk_factors": [
+        "Eerdere klachten, discus-/stenosecontext; geen individuele kansberekening"
+      ],
+      "question_ids": [
+        "leg",
+        "weakness",
+        "bladder",
+        "saddle",
+        "bowel",
+        "sexual",
+        "walking",
+        "distribution",
+        "course",
+        "function"
+      ],
+      "physical_assessment": [
+        "Kracht, sensibiliteit, reflexen en functioneel lopen links/rechts vergelijken",
+        "SLR en gekruiste SLR interpreteren samen met symptomen en neurologie"
+      ],
+      "prognostic_factors": [
+        "Algemene LBP/LRS-factoren uit profiel general_lbp uitsluitend waar passend; geen aandoeningsspecifieke kans of hersteltijd uit dit bestand."
+      ],
+      "therapeutically_modifiable_factors": [
+        "Functionele opbouw, voorlichting en waar passend general_lbp; neurologisch herstel niet alleen door oefeningen bepaald"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Nieuwe ernstige/progressieve parese: urgente medische beoordeling; sacrale functieverandering: CES-route. Overleg bij persisterende beperkende klachten.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Neurodynamische test alleen stelt geen diagnose",
+        "Geen automatische MRI-aanvraag",
+        "Beenpijn kan ook vasculair of uit heup komen"
+      ],
+      "source_ids": [
+        "LRS",
+        "KNGF",
+        "CES"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "stenosis",
+      "name": "Lumbale spinale stenose met neurogene claudicatio",
+      "category": "neurologisch",
+      "diagnostic_clues": [
+        "Been-/bilklachten bij staan/lopen, vaak verlichting bij zitten of flexie"
+      ],
+      "risk_factors": [
+        "Degeneratieve context en hogere leeftijd; anatomische stenose kan asymptomatisch zijn"
+      ],
+      "question_ids": [
+        "walking",
+        "leg",
+        "weakness",
+        "vascular",
+        "bladder",
+        "saddle",
+        "course"
+      ],
+      "physical_assessment": [
+        "Looprespons, neurologie en zo nodig vaatstatus; vergelijk effecten van stilstaan en flexie"
+      ],
+      "prognostic_factors": [
+        "Loopbeperking en neurologische status volgen; geen gevalideerd individueel prognosemodel opgenomen"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Loop-/conditieopbouw en belastingstrategie afgestemd op tolerantie; behandeling van bijkomende factoren"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts/specialist bij aanzienlijke of toenemende beperking; spoed bij CES of snel progressieve uitval.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Klachten plus context nodig; scanbevinding alleen niet voldoende",
+        "Geen afkapwaarde voor loopafstand die zelfstandig onderscheid maakt"
+      ],
+      "source_ids": [
+        "STENOSIS",
+        "LRS",
+        "PAD"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "degenerative_listhesis",
+      "name": "Degeneratieve spondylolisthesis",
+      "category": "structureel",
+      "diagnostic_clues": [
+        "Kan rugpijn, radiculaire klachten of neurogene claudicatio vergezellen"
+      ],
+      "risk_factors": [
+        "Degeneratieve context; bevinding kan toevallig zijn"
+      ],
+      "question_ids": [
+        "history",
+        "walking",
+        "leg",
+        "weakness",
+        "course"
+      ],
+      "physical_assessment": [
+        "Functioneel en neurologisch onderzoek; medische beeldvorming bij gerichte indicatie"
+      ],
+      "prognostic_factors": [
+        "Prognose hangt van klachten, neurologie en medische beoordeling af; radiologische verschuiving niet gelijk aan slechter herstel"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Belastbaarheid en general_lbp waar passend; conservatieve of operatieve strategie via behandelend team"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Overleg bij functionele achteruitgang of neurologische klachten; CES/uitval urgent.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen diagnose van instabiliteit uit één houdings- of palpatiebevinding",
+        "Oudere richtlijnsamenvatting; behandelinhoud nog nader uitwerken"
+      ],
+      "source_ids": [
+        "LISTHESIS",
+        "LRS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "pars",
+      "name": "Spondylolyse / pars stressletsel",
+      "category": "structureel",
+      "diagnostic_clues": [
+        "Bij jonge sporter lokale rugpijn in relatie tot herhaalde extensie/rotatie of trainingsverandering"
+      ],
+      "risk_factors": [
+        "Repetitieve sportbelasting; voorgeschiedenis stressletsel"
+      ],
+      "question_ids": [
+        "onset",
+        "training",
+        "load",
+        "trauma",
+        "leg"
+      ],
+      "physical_assessment": [
+        "Functie en belastingonderzoek; vermijd herhaald pijnlijk provoceren bij stressletselverdenking"
+      ],
+      "prognostic_factors": [
+        "Actief stressletsel en chronisch defect onderscheiden via medische beoordeling; geen herstelduur vastgelegd"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Tijdelijk aanpassen provocerende belasting; sporthervatting afstemmen na beoordeling"
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Huisarts/sportarts bij persisterende verdenking; verdere diagnostiek bepaalt beleid.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Eenbenige hyperextensietest kan parsletsel niet betrouwbaar aantonen of uitsluiten",
+        "Historische beeldvormingsaanbevelingen uit onderzoek niet overgenomen"
+      ],
+      "source_ids": [
+        "PARS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "isthmic_listhesis",
+      "name": "Isthmische spondylolisthesis",
+      "category": "structureel",
+      "diagnostic_clues": [
+        "Bekend parsdefect met eventuele verschuiving; rug-/beenklachten kunnen maar hoeven niet samen te hangen"
+      ],
+      "risk_factors": [
+        "Parsvoorgeschiedenis en sportcontext; geen directe causaliteit uit belasting alleen"
+      ],
+      "question_ids": [
+        "history",
+        "training",
+        "leg",
+        "weakness",
+        "course"
+      ],
+      "physical_assessment": [
+        "Functie en neurologische screening; radiologische classificatie door medische beoordelaar"
+      ],
+      "prognostic_factors": [
+        "Geen aandoeningsspecifieke prognose onderbouwd in dit concept"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Veilige belastingopbouw in samenspraak; geen correctie van wervelstand beloven"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts/sportarts of wervelkolomspecialist bij verdachte klachten of neurologische tekenen.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Dekkingsgat: aparte actuele richtlijn voor volwassen isthmische spondylolisthesis toevoegen",
+        "PARS-bron ondersteunt alleen parscontext en testbeperking, niet dit hele behandelpad"
+      ],
+      "source_ids": [
+        "PARS",
+        "LRS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "osteoporotic_fracture",
+      "name": "Osteoporotische wervelfractuur",
+      "category": "fractuur",
+      "diagnostic_clues": [
+        "Nieuwe lokale rugpijn na gering trauma of zonder duidelijk trauma; mogelijke lengteafname/kyfose"
+      ],
+      "risk_factors": [
+        "Eerdere fragiliteitsfractuur, osteoporose, hogere leeftijd, langdurige corticosteroïden"
+      ],
+      "question_ids": [
+        "onset",
+        "trauma",
+        "bone",
+        "medical",
+        "function",
+        "weakness"
+      ],
+      "physical_assessment": [
+        "Veilig functioneel en neurologisch onderzoek; niet pijnlijk forceren of manipuleren bij verdenking"
+      ],
+      "prognostic_factors": [
+        "Fractuur verhoogt risico op volgende fracturen; functie, pijn, valrisico en medische botgezondheid bepalen opvolging"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Na beoordeling: passende beweging, kracht/balans en valpreventie; botmedicatie door arts"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Tijdige medische beoordeling; bij acuut ernstige pijn, relevante uitval of onveilig functioneren dezelfde dag bespreken.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Afwezigheid van één rode vlag sluit fractuur niet uit",
+        "Geen fractuurdiagnose uit drukpijn alleen"
+      ],
+      "source_ids": [
+        "NOGG",
+        "REDFLAGS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "traumatic_fracture",
+      "name": "Traumatische wervelfractuur / instabiel letsel",
+      "category": "fractuur",
+      "diagnostic_clues": [
+        "Nieuwe rugpijn na relevant trauma; neurologische uitval kan bijkomen"
+      ],
+      "risk_factors": [
+        "Hoogenergetisch trauma; kwetsbare botten verlagen traumadrempel"
+      ],
+      "question_ids": [
+        "trauma",
+        "onset",
+        "weakness",
+        "leg",
+        "bladder",
+        "saddle"
+      ],
+      "physical_assessment": [
+        "Bij verdenking ernstig letsel geen routinematige provocatie; acute medische beoordeling"
+      ],
+      "prognostic_factors": [
+        "Stabiliteit en neurologisch letsel zijn medische prognostische kwesties"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Revalidatie pas na beoordeling van stabiliteit en medische belastingsafspraken"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Acute traumazorg bij ernstig mechanisme, neurologische tekenen of instabiliteitsverdenking.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Een patiënt die nog loopt kan toch relevant letsel hebben",
+        "Geen fysiotherapeutische provocatietest om een instabiele fractuur uit te sluiten"
+      ],
+      "source_ids": [
+        "TRAUMA"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "sacral_insufficiency",
+      "name": "Sacrale insufficiëntiefractuur",
+      "category": "fractuur",
+      "diagnostic_clues": [
+        "Nieuwe sacrale/bil-/lage-rugpijn bij normale belasting, soms zonder duidelijk trauma"
+      ],
+      "risk_factors": [
+        "Osteoporose, hogere leeftijd, corticosteroïden, bekkenbestraling"
+      ],
+      "question_ids": [
+        "onset",
+        "bone",
+        "medical",
+        "trauma",
+        "function"
+      ],
+      "physical_assessment": [
+        "Gang en belastbaarheid voorzichtig beoordelen; diagnostiek door arts"
+      ],
+      "prognostic_factors": [
+        "Botgezondheid, pijn en veilige mobiliteit bepalen beleid; gevalideerd prognosemodel ontbreekt"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Na beoordeling: aangepaste belasting, mobiliteit en fractuurpreventie via team"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Medische beoordeling bij vermoeden; geen voortzetting van provocerende behandeling.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Kan op gewone radiografie gemist worden; geen advies dat normale foto alles uitsluit",
+        "Reviewbasis beperkt en relatief oud"
+      ],
+      "source_ids": [
+        "SACRUM",
+        "NOGG"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "sacral_fatigue",
+      "name": "Sacrale vermoeidheids-/stressfractuur",
+      "category": "fractuur",
+      "diagnostic_clues": [
+        "Belastingsgebonden sacrale/bilpijn bij sport, soms toenemende pijn tijdens lopen"
+      ],
+      "risk_factors": [
+        "Plots hogere herhaalde belasting; mogelijke lage energiebeschikbaarheid/botgezondheidsproblemen nader beoordelen"
+      ],
+      "question_ids": [
+        "training",
+        "onset",
+        "load",
+        "function",
+        "bone",
+        "pregnancy"
+      ],
+      "physical_assessment": [
+        "Belasting- en functieonderzoek voorzichtig; niet met herhaalde hoptesten proberen fractuur uit te sluiten"
+      ],
+      "prognostic_factors": [
+        "Ernst, botgezondheid en belasting bepalen herstel; geen vaste weektermijn"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Belasting tijdelijk verminderen, voeding/herstel en eventuele hormonale factoren met bevoegde zorgverleners bespreken"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts/sportarts bij vermoeden; beeldvormingskeuze via arts.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Fatigue en insufficiëntie niet samenvoegen: respectievelijk overbelasting en verminderde botsterkte",
+        "Voeding/menstruatievragen zijn eigen brede sportklinische operationalisering, geen gevalideerde score"
+      ],
+      "source_ids": [
+        "SACRUM"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "axspa",
+      "name": "Axiale spondyloartritis",
+      "category": "inflammatoir",
+      "diagnostic_clues": [
+        "Langdurige rugpijn met begin op jongere leeftijd; mogelijk nachtelijke/bilpijn en verbetering door bewegen",
+        "Extra-articulaire inflammatoire klachten ondersteunen context"
+      ],
+      "risk_factors": [
+        "Familiaire spondyloartritis, psoriasis, inflammatoire darmziekte of uveïtis in relevante context"
+      ],
+      "question_ids": [
+        "onset",
+        "night",
+        "inflammatory",
+        "family",
+        "medical",
+        "course"
+      ],
+      "physical_assessment": [
+        "Mobiliteit en perifere gewrichten/enthesecontext; medisch onderzoek volgens verwijspad"
+      ],
+      "prognostic_factors": [
+        "Ziekteactiviteit, functie en comorbiditeit door team beoordelen; algemene LBP-prognoses niet blind toepassen"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Bewegen en functioneren ondersteunen; ziektecontrole via reumatoloog"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Bij passend patroon huisarts voor reumatologische beoordeling; acute oogpijn/roodheid met visusklachten apart urgent beoordelen.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen uitsluiting door normaal CRP, negatieve HLA-B27 of één ontbrekend kenmerk",
+        "NICE-verwijscriteria zijn geen autonome diagnoseregel; exacte criteria niet geïmplementeerd"
+      ],
+      "source_ids": [
+        "SPA"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "vertebral_infection",
+      "name": "Spondylodiscitis / vertebrale osteomyelitis",
+      "category": "infectie",
+      "diagnostic_clues": [
+        "Nieuwe of toenemende rugpijn met infectieuze context; koorts kan ontbreken"
+      ],
+      "risk_factors": [
+        "Bacteriëmie, recente infectie/ingreep, immuunsuppressie, relevante medische kwetsbaarheid"
+      ],
+      "question_ids": [
+        "infection",
+        "medical",
+        "onset",
+        "course",
+        "weakness",
+        "bladder",
+        "saddle"
+      ],
+      "physical_assessment": [
+        "Vitale/algemene toestand en neurologie indien bekwaam; geen vertraging voor uitgebreid bewegingsonderzoek"
+      ],
+      "prognostic_factors": [
+        "Verwekker, uitbreiding en neurologische complicaties bepalen prognose; medisch beleid"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Infectiebehandeling door arts; fysiotherapie na medische veiligheids- en belastingsafspraken"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Bij verdenking prompt medische beoordeling; ziek/septisch of neurologische tekenen: acute zorg.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Afwezigheid van koorts sluit infectie niet uit",
+        "Oude IDSA-bron; lokale actuele infectieafspraken nodig"
+      ],
+      "source_ids": [
+        "INFECTION"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "epidural_abscess",
+      "name": "Spinaal epiduraal abces",
+      "category": "infectie",
+      "diagnostic_clues": [
+        "Rugpijn met mogelijke snelle neurologische verandering in infectieuze context"
+      ],
+      "risk_factors": [
+        "Infectie/ingreep en immuunsuppressie kunnen verdenking verhogen"
+      ],
+      "question_ids": [
+        "infection",
+        "medical",
+        "course",
+        "weakness",
+        "bladder",
+        "saddle",
+        "bowel"
+      ],
+      "physical_assessment": [
+        "Geen provocationele behandeling bij verdenking; spoedbeoordeling neurologie via medische zorg"
+      ],
+      "prognostic_factors": [
+        "Neurologische schade en tijdige behandeling relevant; geen prognosescore hier"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Medische infectiebehandeling/decompressie waar geïndiceerd; revalidatie daarna"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Mogelijk abces met neurologische tekenen of ernstige ziekte: spoed.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen vereiste volledige combinatie rugpijn-koorts-uitval",
+        "Eigen afzonderlijk spoedpad; specifieke recente abcesrichtlijn nog toevoegen"
+      ],
+      "source_ids": [
+        "INFECTION",
+        "CES"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "epidural_hematoma",
+      "name": "Spinaal epiduraal hematoom",
+      "category": "neurologische spoed",
+      "diagnostic_clues": [
+        "Plots hevige rug-/beenpijn met nieuwe of snel toenemende neurologische stoornis"
+      ],
+      "risk_factors": [
+        "Antistolling, stollingsstoornis, trauma of recente spinale ingreep als context"
+      ],
+      "question_ids": [
+        "onset",
+        "medical",
+        "trauma",
+        "weakness",
+        "bladder",
+        "saddle",
+        "bowel"
+      ],
+      "physical_assessment": [
+        "Geen uitstel door fysieke provocatietests"
+      ],
+      "prognostic_factors": [
+        "Neurologische omvang en medische interventie bepalen uitkomst; geen individueel model"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Antistollings-/chirurgisch beleid uitsluitend arts; herstelzorg na stabilisatie"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Acute medische beoordeling bij passend plots/progressief neurologisch beeld.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Zeldzaam; risicoafwezigheid sluit het niet uit",
+        "Bronnen ondersteunen zeldzame oorzaak/CES-context; eigen specifieke pathologierichtlijn ontbreekt"
+      ],
+      "source_ids": [
+        "LRS",
+        "CES"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "spinal_malignancy",
+      "name": "Spinale maligniteit / metastasen en mogelijke compressie",
+      "category": "oncologisch",
+      "diagnostic_clues": [
+        "Nieuwe progressieve/onverklaarde rugpijn, vooral bij kankercontext; neurologische symptomen kunnen bijkomen"
+      ],
+      "risk_factors": [
+        "Actieve/doorgemaakte maligniteit; andere tekenen zoals onbedoeld gewichtsverlies in context"
+      ],
+      "question_ids": [
+        "cancer",
+        "course",
+        "night",
+        "function",
+        "weakness",
+        "bladder",
+        "saddle",
+        "bowel"
+      ],
+      "physical_assessment": [
+        "Geen belasting die verdachte instabiliteit of neurologische schade kan verergeren"
+      ],
+      "prognostic_factors": [
+        "Tumortype, uitbreiding, stabiliteit en neurologie bepalen prognose; geen LBP-herstelmodel"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Oncologische behandeling door team; aangepaste activiteit pas met veiligheidsafspraken"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Kankercontext met nieuwe verdachte pijn: snel medisch overleg; mogelijke neurologische compressie: spoed.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Ook pijn die door bewegen verandert kan bij maligniteit passen",
+        "Nachtpijn op zichzelf is niet diagnostisch",
+        "Britse organisatie van MSCC-zorg naar Nederlandse lokale route te vertalen"
+      ],
+      "source_ids": [
+        "MSCC",
+        "REDFLAGS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "myeloma",
+      "name": "Multipel myeloom / hematologische botpathologie",
+      "category": "oncologisch",
+      "diagnostic_clues": [
+        "Persisterende bot-/rugpijn of onverklaarde fractuur; bredere medische context nodig"
+      ],
+      "risk_factors": [
+        "Hogere leeftijd verhoogt aandacht maar is geen vereiste"
+      ],
+      "question_ids": [
+        "cancer",
+        "bone",
+        "medical",
+        "course",
+        "function"
+      ],
+      "physical_assessment": [
+        "Voorzichtige functiebeoordeling; bloed-/urineonderzoek en beeldvorming door arts"
+      ],
+      "prognostic_factors": [
+        "Medische ziektekenmerken, nierfunctie en botcomplicaties bepalen prognose"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Medisch beleid en fractuurpreventie; activiteit afstemmen op botveiligheid"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts bij onverklaarde persisterende botpijn/fractuur; spoed bij compressie/ernstig ziek zijn.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen diagnose uit vermoeidheid of leeftijd alleen",
+        "NICE leeftijdscriterium voor laboratoriumonderzoek is geen uitsluitregel voor jongere patiënten"
+      ],
+      "source_ids": [
+        "MYELOMA",
+        "MSCC"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "ces",
+      "name": "Cauda-equinasyndroom (CES)",
+      "category": "spoedsyndroom",
+      "diagnostic_clues": [
+        "Nieuwe/verergerende verandering in blaas-, darm-, rijbroek- of seksuele functie bij rug-/beenklachten",
+        "Ernstige/progressieve bilaterale neurologische uitval kan passen"
+      ],
+      "risk_factors": [
+        "Grote discusprolaps; ook tumor, infectie, bloeding of trauma; afwezig risico sluit niet uit"
+      ],
+      "question_ids": [
+        "bladder",
+        "saddle",
+        "bowel",
+        "sexual",
+        "weakness",
+        "leg",
+        "onset",
+        "course"
+      ],
+      "physical_assessment": [
+        "Negatief lichamelijk onderzoek mag relevante subjectieve symptomen niet wegstrepen",
+        "Geen rectaal onderzoek nodig om vanuit fysiotherapie spoedverwijzing te rechtvaardigen"
+      ],
+      "prognostic_factors": [
+        "Blijvende functiestoornissen mogelijk; geen geruststellende score berekenen"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Directe medische diagnostiek en behandeling; revalidatie na specialistisch beleid"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Bij reële CES-verdenking onmiddellijk medische spoedbeoordeling regelen; niet wachten op volledig klachtenbeeld of de rest van de checklist.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen los symptoom of test bewijst/ontkracht CES",
+        "Bestaande incontinentie onderscheiden van nieuwe verandering",
+        "Geen harde 14-dagengrens gebruiken om langer bestaande verdachte klachten veilig te verklaren"
+      ],
+      "source_ids": [
+        "CES"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "hip_oa",
+      "name": "Heupartrose met gerefereerde klachten",
+      "category": "heup",
+      "diagnostic_clues": [
+        "Activiteitsgerelateerde lies-/heuppijn, stijfheid en bewegingsbeperking; rug-/bilklachten kunnen overlappen"
+      ],
+      "risk_factors": [
+        "Leeftijd en eerdere heupcontext; radiologische artrose niet automatisch symptomatisch"
+      ],
+      "question_ids": [
+        "hip",
+        "function",
+        "load",
+        "history",
+        "course"
+      ],
+      "physical_assessment": [
+        "Heup-ROM en functionele taken; combineer klachtenherkenning en functie"
+      ],
+      "prognostic_factors": [
+        "Functie en belastbaarheid volgen; geen individuele progressie uit foto alleen"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Passende oefening, voorlichting en indien relevant gewichtsmanagement zonder stigma"
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Huisarts bij atypische presentatie of ernstige beperking; orthopedisch overleg volgens gedeelde besluitvorming bij onvoldoende resultaat.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Heup- en rugproblematiek kunnen tegelijk bestaan",
+        "NICE klinische artrosecriteria vervangen geen differentiaal bij atypisch verloop"
+      ],
+      "source_ids": [
+        "OA"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "hip_intraarticular",
+      "name": "FAI-syndroom / andere intra-articulaire heupklachten",
+      "category": "heup",
+      "diagnostic_clues": [
+        "Lies-/heuppijn bij buigen/draaien of sport; soms mechanische klachten"
+      ],
+      "risk_factors": [
+        "Sport-/morfologiecontext, niet op zichzelf een diagnose"
+      ],
+      "question_ids": [
+        "hip",
+        "training",
+        "function",
+        "load",
+        "history"
+      ],
+      "physical_assessment": [
+        "Heupfunctie en passende provocatie zoals FADIR; geen enkelvoudige bewijswaarde"
+      ],
+      "prognostic_factors": [
+        "Geen uniforme prognose; specifieke pathologie en doelen bepalen beleid"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Belastingaanpassing, oefening en functieopbouw; verdere diagnostiek bij gerichte vraag"
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Huisarts/sportarts bij persisterende verdenking en beperking.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "FAI-syndroom vraagt symptomen, tekenen en beeldvorming in samenhang",
+        "Positieve FADIR of cam/pincer-morfologie alleen niet voldoende",
+        "Labrumproblematiek nog niet als apart volledig pad uitgewerkt"
+      ],
+      "source_ids": [
+        "FAI"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "gluteal",
+      "name": "Gluteale tendinopathie / greater trochanteric pain syndrome",
+      "category": "heup",
+      "diagnostic_clues": [
+        "Laterale heuppijn bij belasting of zijligging; kan naar bil/bovenbeen uitstralen"
+      ],
+      "risk_factors": [
+        "Belastingscontext; geen universele risicoscore"
+      ],
+      "question_ids": [
+        "lateralhip",
+        "hip",
+        "load",
+        "function",
+        "leg"
+      ],
+      "physical_assessment": [
+        "Gerichte laterale heupbelasting en krachtfunctie; rug-/heup-/neurologische differentiaal behouden"
+      ],
+      "prognostic_factors": [
+        "Geen universele prognose; reactie op opbouw en functioneren volgen"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Belastingeducatie en passende oefeningen bij vastgesteld klinisch beeld"
+      ],
+      "referral": {
+        "priority": "routine",
+        "action": "Conservatief waar passend; herbeoordeling bij afwijkende tekenen of onvoldoende verklaarde klachten.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "GTPS is een bredere klinische categorie dan de geselecteerde tendinopathiepopulatie uit de trial",
+        "Geen diagnose bursitis uit locatie alleen"
+      ],
+      "source_ids": [
+        "GLUTEAL"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "aaa",
+      "name": "Symptomatisch / geruptureerd abdominaal aorta-aneurysma",
+      "category": "vasculair",
+      "diagnostic_clues": [
+        "Acute nieuwe rug-/buikpijn met mogelijke collaps of circulatoire tekenen"
+      ],
+      "risk_factors": [
+        "Bekend aneurysma, hogere leeftijd, roken en hypertensie"
+      ],
+      "question_ids": [
+        "abdomen",
+        "vascular",
+        "onset",
+        "medical"
+      ],
+      "physical_assessment": [
+        "Bij spoedverdenking geen provocatie of wachten op palpatie/auscultatie"
+      ],
+      "prognostic_factors": [
+        "Levensbedreigende context; uitkomst afhankelijk van medische acute zorg"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Acute vaatzorg; risicobehandeling via arts na stabilisatie"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Bij passend acuut beeld: onmiddellijk spoedzorg, 112 bij instabiliteit/collaps.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Afwezigheid van voelbare pulsatie of één kenmerk sluit AAA niet uit",
+        "Geen routine-AAA-diagnose door AI op basis van rugpijn en roken"
+      ],
+      "source_ids": [
+        "AAA"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "vascular_claudication",
+      "name": "Perifeer arterieel vaatlijden met vasculaire claudicatio",
+      "category": "vasculair",
+      "diagnostic_clues": [
+        "Reproduceerbare beenpijn bij lopen, verlichting door rust; flexie niet noodzakelijk voor verlichting"
+      ],
+      "risk_factors": [
+        "Roken, diabetes, vaatziekte en cardiovasculaire risicofactoren"
+      ],
+      "question_ids": [
+        "walking",
+        "vascular",
+        "leg",
+        "medical",
+        "course"
+      ],
+      "physical_assessment": [
+        "Vaatstatus en enkel-armindex indien bevoegd/bekwaam; neurologische en functionele vergelijking"
+      ],
+      "prognostic_factors": [
+        "Vasculair risico en functionele beperkingen vragen medische follow-up"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Gestructureerde loopbegeleiding waar geïndiceerd; stoppen met roken en medische risicobehandeling"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts bij verdenking; acuut koud/pijnlijk bleek been of plots ernstige uitval: spoed.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Normale palpabele pulsaties sluiten PAD niet definitief uit",
+        "Bij diabetes kan enkel-armindex minder betrouwbaar zijn",
+        "Neurogene en vasculaire klachten kunnen samen voorkomen"
+      ],
+      "source_ids": [
+        "PAD",
+        "LRS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "renal_colic",
+      "name": "Nier-/uretersteen met nierkoliek",
+      "category": "visceraal",
+      "diagnostic_clues": [
+        "Hevige flank-/rugpijn eventueel uitstralend naar lies; misselijkheid of urineklachten kunnen passen"
+      ],
+      "risk_factors": [
+        "Eerdere stenen en urologische voorgeschiedenis als context"
+      ],
+      "question_ids": [
+        "abdomen",
+        "urinary",
+        "history",
+        "infection",
+        "pregnancy"
+      ],
+      "physical_assessment": [
+        "Geen fysiotherapeutische test om steen vast te stellen; medische beoordeling"
+      ],
+      "prognostic_factors": [
+        "Obstructie, infectie en nierfunctie bepalen urgentie en beleid"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Medische pijn-/steenbehandeling; geen oefening als primaire therapie"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Bij verdenking acute medische beoordeling; koorts/ziek zijn of mogelijke infectie-obstructiecombinatie extra urgent.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Urine zonder zichtbaar bloed sluit steen niet uit",
+        "Extra klinische symptomen zijn eigen operationalisering, geen gevalideerde steenregel"
+      ],
+      "source_ids": [
+        "STONES",
+        "PYELONEPHRITIS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "pyelonephritis",
+      "name": "Acute pyelonefritis",
+      "category": "visceraal/infectie",
+      "diagnostic_clues": [
+        "Flank-/rugpijn met koorts, ziek gevoel en/of urineklachten"
+      ],
+      "risk_factors": [
+        "Zwangerschap, diabetes, verminderde afweer of urologische afwijking maken context belangrijk"
+      ],
+      "question_ids": [
+        "infection",
+        "urinary",
+        "medical",
+        "pregnancy",
+        "abdomen"
+      ],
+      "physical_assessment": [
+        "Algemene toestand; medisch urine-/laboratoriumonderzoek"
+      ],
+      "prognostic_factors": [
+        "Ernst, comorbiditeit en respons op medische behandeling bepalen vervolg"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Antimicrobiële behandeling door arts; herstelzorg na stabilisatie"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Prompt huisarts/huisartsenpost; ernstige ziekte of sepsisverdenking via acute zorg.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen geruststelling als één typisch symptoom ontbreekt",
+        "Niet behandelen als gewone mechanische rugpijn zolang infectieuze verdenking niet beoordeeld is"
+      ],
+      "source_ids": [
+        "PYELONEPHRITIS"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "endometriosis",
+      "name": "Endometriose / cyclische bekkenproblematiek",
+      "category": "bekken/visceraal",
+      "diagnostic_clues": [
+        "Bekkenklachten met menstruatieverband, pijn bij seks of cyclische darm-/urineklachten; rugpijn kan onderdeel zijn"
+      ],
+      "risk_factors": [
+        "Familiaire endometriosecontext"
+      ],
+      "question_ids": [
+        "cycle",
+        "pregnancy",
+        "urinary",
+        "abdomen",
+        "function",
+        "course"
+      ],
+      "physical_assessment": [
+        "Binnen eigen competentie functie beoordelen; gynaecologisch onderzoek via passende bevoegde zorgverlener"
+      ],
+      "prognostic_factors": [
+        "Symptoomlast, doelen en medische beoordeling bepalen verloop; geen LBP-herstelmodel"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Medische/gynaecologische behandeling; aanvullende bekken-/pijnzorg waar passend"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts/gynaecologie bij passend persisterend patroon. Mogelijke zwangerschap met acute buik-/bekkenpijn of bloedverlies: urgente beoordeling op andere oorzaken.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Normaal onderzoek sluit endometriose niet uit",
+        "Geen diagnose uit menstruatieverband alleen",
+        "Andere gynaecologische en buikoorzaken nog niet volledig uitgewerkt"
+      ],
+      "source_ids": [
+        "ENDOMETRIOSIS",
+        "ECTOPIC"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "pregnancy_pgp",
+      "name": "Zwangerschaps-/postpartumgerelateerde bekkenpijn",
+      "category": "bekken",
+      "diagnostic_clues": [
+        "Rug-/bekkenpijn rond zwangerschap, bij draaien, lopen, traplopen of transfers"
+      ],
+      "risk_factors": [
+        "Zwangerschap/postpartum en eerdere klachten als context"
+      ],
+      "question_ids": [
+        "pregnancy",
+        "load",
+        "function",
+        "history",
+        "abdomen",
+        "weakness",
+        "bladder"
+      ],
+      "physical_assessment": [
+        "Passend functioneel onderzoek en zo nodig bekkenfysiotherapeutische beoordeling"
+      ],
+      "prognostic_factors": [
+        "Individueel verloop; geen garantie op vanzelf verdwijnen na bevalling"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Activiteit verdelen, passende oefening en hulpmiddelen alleen bij gerichte indicatie"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Bij passend veilig beeld fysiotherapie; acute buikpijn, bloedverlies, ernstige ziekte of neurologische symptomen medisch beoordelen.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Geen automatische diagnose instabiliteit",
+        "Niet iedere pijn tijdens zwangerschap is bekkenpijn",
+        "Bron is patiënteninformatie; professionele Nederlandse bekkenrichtlijn nog toevoegen"
+      ],
+      "source_ids": [
+        "PGP",
+        "ECTOPIC"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    },
+    {
+      "id": "zoster",
+      "name": "Herpes zoster / radiculitis",
+      "category": "huid/neurologisch",
+      "diagnostic_clues": [
+        "Eenzijdige dermatomale brandende pijn of allodynie; huidblaasjes kunnen later volgen"
+      ],
+      "risk_factors": [
+        "Hogere leeftijd en verminderde afweer"
+      ],
+      "question_ids": [
+        "skin",
+        "onset",
+        "medical",
+        "leg",
+        "infection"
+      ],
+      "physical_assessment": [
+        "Huid-/sensibiliteitsbeeld gericht bekijken met toestemming; geen provocatie nodig"
+      ],
+      "prognostic_factors": [
+        "Persisterende neuralgie mogelijk; ernst en medische context belangrijk"
+      ],
+      "therapeutically_modifiable_factors": [
+        "Medische behandeling door arts; latere ondersteuning bij pijn/functioneren"
+      ],
+      "referral": {
+        "priority": "conditional",
+        "action": "Huisarts bij vermoeden; ernstige ziekte of kwetsbare context bepaalt extra urgentie.",
+        "route": "Fysiotherapeut beoordeelt; medische beoordeling via huisarts/huisartsenpost, SEH of bestaande specialist afhankelijk van urgentie. Bij acute levensbedreiging 112."
+      },
+      "limitations": [
+        "Zonder uitslag moeilijker te herkennen; niet alle brandende pijn is zoster",
+        "Geen automatische zenuwworteldiagnose door huidlocatie alleen"
+      ],
+      "source_ids": [
+        "ZOSTER"
+      ],
+      "evidence_status": "brononderbouwde kern met eigen klinische operationalisering; niet klinisch gereviewd",
+      "review_status": "draft"
+    }
+  ],
+  "sources": [
+    {
+      "id": "KNGF",
+      "title": "Management of low back pain and lumbosacral radicular syndrome: the KNGF guideline",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11112513/",
+      "year": 2024,
+      "type": "richtlijnpublicatie",
+      "scope": "Nederlandse fysiotherapie; richtlijn uit 2021, publicatie uit 2024. Algemene prognostische factoren en begeleiding bij LBP/LRS.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "NG59",
+      "title": "NICE NG59: Low back pain and sciatica",
+      "url": "https://www.nice.org.uk/guidance/ng59/chapter/recommendations",
+      "year": 2020,
+      "type": "richtlijn",
+      "scope": "Context, behandeling en terughoudendheid met routinebeeldvorming.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "LRS",
+      "title": "NVN: Anamnese en lichamelijk onderzoek bij LRS",
+      "url": "https://richtlijnendatabase.nl/richtlijn/lumbosacraal_radiculair_syndroom_lrs/anamnese_en_lichamelijk_onderzoek_bij_lrs.html",
+      "year": 2020,
+      "type": "richtlijn",
+      "scope": "Radiculaire klachten en neurologisch onderzoek.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "CES",
+      "title": "GIRFT National Suspected Cauda Equina Syndrome Pathway",
+      "url": "https://gettingitrightfirsttime.co.uk/wp-content/uploads/2025/03/National-Suspected-Cauda-Equina-Pathway-February-2025.pdf",
+      "year": 2025,
+      "type": "zorgpad",
+      "scope": "Symptomen, beperkingen van uitsluiting en spoedbeoordeling. Britse route niet letterlijk als Nederlandse route overgenomen.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "SPA",
+      "title": "NICE NG65: Spondyloarthritis",
+      "url": "https://www.nice.org.uk/guidance/ng65/chapter/Recommendations",
+      "year": 2017,
+      "type": "richtlijn",
+      "scope": "Herkenning en verwijzing bij verdenking axiale spondyloartritis.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "MSCC",
+      "title": "NICE NG234: Spinal metastases and metastatic spinal cord compression",
+      "url": "https://www.nice.org.uk/guidance/ng234/chapter/recommendations",
+      "year": 2023,
+      "type": "richtlijn",
+      "scope": "Oncologische verdenking en neurologische spoedsignalen.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "INFECTION",
+      "title": "IDSA Native Vertebral Osteomyelitis",
+      "url": "https://www.idsociety.org/practice-guideline/vertebral-osteomyelitis/",
+      "year": 2015,
+      "type": "richtlijn",
+      "scope": "Vertebrale infectie; richtlijn relatief oud, herbeoordeling nodig bij actualisatie.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "NOGG",
+      "title": "NOGG fracture risk and symptomatic vertebral fractures",
+      "url": "https://www.nogg.org.uk/full-guideline/section-8-management-symptomatic-osteoporotic-vertebral-fractures",
+      "year": 2024,
+      "type": "richtlijn",
+      "scope": "Wervelfractuur, herstel en secundaire fractuurpreventie. Risicohoofdstuk: https://www.nogg.org.uk/full-guideline/section-3-fracture-risk-assessment-and-case-finding",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "TRAUMA",
+      "title": "NICE NG41: Spinal injury",
+      "url": "https://www.nice.org.uk/guidance/ng41/chapter/Recommendations",
+      "year": 2016,
+      "type": "richtlijn",
+      "scope": "Traumatische wervelkolomletsels; spoedzorgcontext.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "STENOSIS",
+      "title": "NASS guideline summary: Degenerative lumbar spinal stenosis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23830297/",
+      "year": 2013,
+      "type": "richtlijnsamenvatting",
+      "scope": "Stenose; oudere bron. Aanvullend LRS voor klinische differentiatie.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "LISTHESIS",
+      "title": "NASS guideline summary: Degenerative lumbar spondylolisthesis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26681351/",
+      "year": 2016,
+      "type": "richtlijnsamenvatting",
+      "scope": "Degeneratieve spondylolisthesis; bron actualiseren voordat behandelregels worden geactiveerd.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "PARS",
+      "title": "Use of the one-legged hyperextension test and MRI in active spondylolysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2465027/",
+      "year": 2006,
+      "type": "diagnostisch onderzoek",
+      "scope": "Beperking van eenbenige extensietest. Geen overname van historische beeldvormingsstrategie.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "SACRUM",
+      "title": "Risk factors associated with sacral stress fractures: a systematic review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4461718/",
+      "year": 2015,
+      "type": "systematische review",
+      "scope": "Onderscheid vermoeidheids- en insufficiëntiefracturen van het sacrum.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "STRUCTURE",
+      "title": "Low back pain of disc, sacroiliac joint, or facet joint origin: a diagnostic accuracy systematic review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37096189/",
+      "year": 2023,
+      "type": "systematische review",
+      "scope": "Anatomische pijnbronhypothesen en beperkingen van diagnostiek.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "SI",
+      "title": "Diagnostic accuracy of clusters of pain provocation tests for SI joint pain",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34210160/",
+      "year": 2021,
+      "type": "systematische review",
+      "scope": "Positieve SI-testcluster bewijst de pijnbron niet.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "REDFLAGS",
+      "title": "Red flags to screen for malignancy and fracture in patients with low back pain",
+      "url": "https://www.bmj.com/content/347/bmj.f7095",
+      "year": 2013,
+      "type": "systematische review",
+      "scope": "Beperkte waarde van veel afzonderlijke rode vlaggen; context en combinaties belangrijk.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "NOCIPLASTIC",
+      "title": "Chronic nociplastic pain affecting the musculoskeletal system: clinical criteria and grading system",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33974577/",
+      "year": 2021,
+      "type": "consensuscriteria",
+      "scope": "Pijnmechanisme, geen orgaan- of weefseldiagnose en geen automatische conclusie uit psychologische factoren.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "OA",
+      "title": "NICE NG226: Osteoarthritis",
+      "url": "https://www.nice.org.uk/guidance/ng226/chapter/Recommendations",
+      "year": 2022,
+      "type": "richtlijn",
+      "scope": "Klinische herkenning en conservatieve begeleiding bij artrose.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "FAI",
+      "title": "Warwick Agreement on femoroacetabular impingement syndrome",
+      "url": "https://bjsm.bmj.com/content/50/19/1169",
+      "year": 2016,
+      "type": "consensus",
+      "scope": "FAI-syndroom vereist samenhang tussen klachten, klinische tekenen en beeldvorming.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "GLUTEAL",
+      "title": "Education plus exercise versus injection versus wait and see for gluteal tendinopathy",
+      "url": "https://www.bmj.com/content/361/bmj.k1662",
+      "year": 2018,
+      "type": "gerandomiseerd onderzoek",
+      "scope": "Behandeling van geselecteerde gluteale tendinopathie; geen diagnostische richtlijn voor alle laterale heuppijn.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "AAA",
+      "title": "NICE NG156: Abdominal aortic aneurysm",
+      "url": "https://www.nice.org.uk/guidance/ng156/chapter/Recommendations",
+      "year": 2020,
+      "type": "richtlijn",
+      "scope": "Herkenning van mogelijk symptomatisch/geruptureerd aneurysma.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "PAD",
+      "title": "NICE CG147: Peripheral arterial disease",
+      "url": "https://www.nice.org.uk/guidance/cg147/chapter/recommendations",
+      "year": 2020,
+      "type": "richtlijn",
+      "scope": "Vasculaire claudicatio, onderzoek en begeleiding.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "STONES",
+      "title": "NICE NG118: Renal and ureteric stones",
+      "url": "https://www.nice.org.uk/guidance/ng118/chapter/recommendations",
+      "year": 2019,
+      "type": "richtlijn",
+      "scope": "Medische beoordeling en beeldvorming bij nierkoliek; geen diagnose door fysiotherapeutische provocatie.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "PYELONEPHRITIS",
+      "title": "NICE NG111: Pyelonephritis",
+      "url": "https://www.nice.org.uk/guidance/ng111/chapter/recommendations",
+      "year": 2018,
+      "type": "richtlijn",
+      "scope": "Medische behandeling, risicogroepen en escalatie.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "ENDOMETRIOSIS",
+      "title": "NICE NG73: Endometriosis",
+      "url": "https://www.nice.org.uk/guidance/ng73/chapter/Recommendations",
+      "year": 2024,
+      "type": "richtlijn",
+      "scope": "Cyclische bekkenklachten en verwijzing. Publicatie oorspronkelijk 2017, inhoud geactualiseerd.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "MYELOMA",
+      "title": "NICE NG12: Suspected cancer, myeloma recommendations",
+      "url": "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer",
+      "year": 2015,
+      "type": "richtlijn",
+      "scope": "Persisterende bot-/rugpijn en onverklaarde fractuur; controleer actuele pagina vóór klinische implementatie.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "PGP",
+      "title": "RCOG: Pelvic girdle pain and pregnancy",
+      "url": "https://www.rcog.org.uk/media/edcf20pq/pi_pgp_2025-pc.pdf",
+      "year": 2025,
+      "type": "patiënteninformatie beroepsvereniging",
+      "scope": "Zwangerschapsgerelateerde bekkenpijn; lager detailniveau dan een professionele richtlijn.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "ZOSTER",
+      "title": "CDC: Clinical features of shingles",
+      "url": "https://www.cdc.gov/shingles/hcp/clinical-signs/index.html",
+      "year": 2024,
+      "type": "publieke gezondheidsinformatie",
+      "scope": "Dermatomale pijn en huidafwijkingen.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    },
+    {
+      "id": "ECTOPIC",
+      "title": "NICE NG126: Ectopic pregnancy and miscarriage",
+      "url": "https://www.nice.org.uk/guidance/ng126/chapter/recommendations",
+      "year": 2023,
+      "type": "richtlijn",
+      "scope": "Veiligheidscontext bij mogelijke zwangerschap met acute buik-/bekkenklachten.",
+      "checked_on": "2026-10-07",
+      "access": "inhoud via publicatie of zoekindex gecontroleerd; geen garantie op toekomstige URL-beschikbaarheid"
+    }
+  ],
+  "review": {
+    "required_review": [
+      "Fysiotherapeut met expertise lage rug: inhoud, terminologie en klinische haalbaarheid",
+      "Medisch inhoudsdeskundige: spoedcriteria en Nederlandse verwijspaden",
+      "Broncontrole en datum-/versiebeheer per aandoening",
+      "Controle op ongewenste bias, overdiagnostiek en belasting voor patiënt",
+      "Pas na review afzonderlijk implementeren en klinisch valideren"
+    ],
+    "notes": "Technische tests valideren bestandsintegriteit, niet medische juistheid."
+  }
+}

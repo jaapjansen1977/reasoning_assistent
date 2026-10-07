@@ -20,4 +20,4 @@ reasoning-assistent = "reasoning_assistent.main:main"
 include = ["reasoning_assistent*"]
 
 [tool.setuptools.package-data]
-"reasoning_assistent.knowledge" = ["*.json"]
+"reasoning_assistent.knowledge" = ["*.json", "regions/*.json", "schemas/*.json"]

@@ -1,0 +1,51 @@
+{
+  "version": "0.1.0",
+  "regions": [
+    {
+      "id": "low_back",
+      "title": "Lage rug / bekken / gerefereerde klachten",
+      "status": "draft_requires_clinical_review",
+      "path": "regions/low_back.v1.json"
+    },
+    {
+      "id": "neck",
+      "title": "Nek / cervicothoracale klachten",
+      "status": "planned"
+    },
+    {
+      "id": "shoulder",
+      "title": "Schouder / bovenarm",
+      "status": "planned"
+    },
+    {
+      "id": "elbow",
+      "title": "Elleboog / onderarm",
+      "status": "planned"
+    },
+    {
+      "id": "wrist_hand",
+      "title": "Pols / hand",
+      "status": "planned"
+    },
+    {
+      "id": "thoracic",
+      "title": "Thoracale regio / borstkas",
+      "status": "planned"
+    },
+    {
+      "id": "hip_groin",
+      "title": "Heup / lies",
+      "status": "planned"
+    },
+    {
+      "id": "knee",
+      "title": "Knie",
+      "status": "planned"
+    },
+    {
+      "id": "ankle_foot",
+      "title": "Enkel / voet",
+      "status": "planned"
+    }
+  ]
+}
