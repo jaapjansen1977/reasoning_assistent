@@ -30,14 +30,14 @@ klinische test- of verwijsadviezen.
 ## Audio en snelheid
 
 `Transcriber.transcribe(audio_path)` is het eerste aansluitpunt; de implementatie
-is nog niet aanwezig. Live audio krijgt later een aparte recorder, chunkbuffer,
-spreekbeurten en achtergrondworker. Zware verwerking mag het venster niet blokkeren.
+is nog niet aanwezig. Live audio gebruikt nu een aparte recorder, chunkbuffer en achtergrondworker.
+Sprekerherkenning en transcriptie zijn nog niet aangesloten. Zware verwerking mag het venster niet blokkeren.
 Eerst meten we transcriptkwaliteit en verwerkingstijd op de CPU-laptop.
 
 ## Configuratie en distributie
 
 Kennis wordt via `importlib.resources` geladen, onafhankelijk van de werkmap.
-De desktop heeft geen netwerk- of opslagfunctie. Latere modellen blijven lokaal;
+De desktop heeft geen netwerk- of bestandsopslagfunctie. Latere modellen blijven lokaal;
 modelpaden, versies en instellingen komen in aparte configuratie. PyInstaller
 neemt de pakketdata mee. Geen modeldownloads tijdens een consult.
 

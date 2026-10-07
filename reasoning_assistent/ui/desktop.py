@@ -3,13 +3,22 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from ..application import ConsultationService
 from ..demo import DEMO_TRANSCRIPT
+from .microphone import MicrophonePanel
 
 
 def launch(service: ConsultationService) -> None:
     root = tk.Tk()
     root.title("Reasoning assistent — prototype")
-    root.geometry("1000x750")
-    ttk.Label(root, text="DEMO — tekstprototype; AI en microfoon nog niet aangesloten",
+    root.geometry("1000x900")
+    microphone = MicrophonePanel(root)
+    microphone.pack(padx=16, pady=8, fill="x")
+
+    def close():
+        microphone.close()
+        root.destroy()
+
+    root.protocol("WM_DELETE_WINDOW", close)
+    ttk.Label(root, text="DEMO — microfoontest en tekstprototype; AI nog niet aangesloten",
               wraplength=950).pack(padx=16, pady=10, anchor="w")
     ttk.Label(root, text="Demo-invoer: onderwerp | status | bewijs. Vrije tekst wordt nog niet geïnterpreteerd.",
               wraplength=950).pack(padx=16, anchor="w")
