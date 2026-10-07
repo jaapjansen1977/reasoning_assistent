@@ -4,6 +4,7 @@ from tkinter import ttk, messagebox
 from ..application import ConsultationService
 from ..demo import DEMO_TRANSCRIPT
 from .microphone import MicrophonePanel
+from .ai_panel import AIPanel
 
 
 def launch(service: ConsultationService) -> None:
@@ -19,7 +20,13 @@ def launch(service: ConsultationService) -> None:
     microphone = MicrophonePanel(speech_tab)
     microphone.pack(padx=16, pady=8, fill="both", expand=True)
 
+    ai_tab = ttk.Frame(notebook)
+    notebook.add(ai_tab, text="Online AI-proef (fictief)")
+    ai_panel = AIPanel(ai_tab, lambda: microphone.transcript.get("1.0", "end-1c"))
+    ai_panel.pack(padx=16, pady=12, fill="both", expand=True)
+
     def close():
+        ai_panel.close()
         microphone.close()
         root.destroy()
 
