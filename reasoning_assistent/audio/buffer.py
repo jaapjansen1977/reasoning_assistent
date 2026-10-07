@@ -36,6 +36,13 @@ class ChunkBuffer:
     def pop(self):
         return self.ready.popleft() if self.ready else None
 
+    def flush(self):
+        if self.pending:
+            if len(self.ready) == self.ready.maxlen:
+                self.evicted_chunks += 1
+            self.ready.append(AudioChunk(bytes(self.pending), self.samplerate))
+            self.pending.clear()
+
     def clear(self):
         self.pending.clear()
         self.ready.clear()

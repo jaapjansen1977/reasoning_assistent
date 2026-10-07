@@ -7,9 +7,9 @@ from array import array
 from dataclasses import dataclass
 from math import sqrt, log10
 from queue import Queue, Empty, Full
-from threading import Event, Lock, Thread
+from threading import Event, Lock, RLock, Thread
 from time import monotonic
-from .buffer import ChunkBuffer
+from .buffer import ChunkBuffer, AudioChunk
 from .devices import AudioError, InputDevice, load_backend
 
 
@@ -31,7 +31,9 @@ class MicrophoneRecorder:
         self._worker = None
         self._stop = Event()
         self._finished = Event()
+        self._drain = False
         self._lock = Lock()
+        self._lifecycle = RLock()
         self._queue = Queue(maxsize=32)
         self._buffer = None
         self._level_db = -60.0
@@ -48,6 +50,7 @@ class MicrophoneRecorder:
             raise AudioError("Microfoon luistert al.")
         sd = self._backend if self._backend is not None else load_backend()
         self._stop.clear()
+        self._drain = False
         self._finished.clear()
         self._queue = Queue(maxsize=32)
         self._buffer = ChunkBuffer(device.samplerate)
@@ -80,7 +83,7 @@ class MicrophoneRecorder:
             self._warning = "Verwerking loopt achter; audioblokken zijn verloren gegaan."
 
     def _process(self):
-        while not self._stop.is_set():
+        while not self._stop.is_set() or (self._drain and not self._queue.empty()):
             try:
                 pcm = self._queue.get(timeout=0.1)
             except Empty:
@@ -115,7 +118,16 @@ class MicrophoneRecorder:
         with self._lock:
             return self._buffer.pop() if self._buffer else None
 
-    def stop(self):
+    def finish(self):
+        """Stop opname en geef resterende fragmenten, inclusief staart, terug."""
+        return self.stop(keep_tail=True)
+
+    def stop(self, keep_tail=False):
+        with self._lifecycle:
+            return self._stop_capture(keep_tail)
+
+    def _stop_capture(self, keep_tail):
+        self._drain = keep_tail
         self._stop.set()
         stream, self._stream = self._stream, None
         if stream is not None:
@@ -130,8 +142,13 @@ class MicrophoneRecorder:
         if self._worker is not None:
             self._worker.join(timeout=1.0)
             self._worker = None
+        chunks = ()
         with self._lock:
             if self._buffer is not None:
+                if keep_tail:
+                    chunks = tuple(self._buffer.ready)
+                    if self._buffer.pending:
+                        chunks += (AudioChunk(bytes(self._buffer.pending), self._buffer.samplerate),)
                 self._buffer.clear()
             self._buffer = None
             self._level_db = -60.0
@@ -140,3 +157,4 @@ class MicrophoneRecorder:
                 self._queue.get_nowait()
             except Empty:
                 break
+        return chunks

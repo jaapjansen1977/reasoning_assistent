@@ -6,7 +6,9 @@ kennisbronnen en onderbouwde suggesties tonen.
 
 ## Wat werkt nu?
 
-Een lokaal venster met microfoonkeuze, start-/stopknoppen en geluidsmeter.
+Een lokaal venster met microfoonkeuze, start-/stopknoppen, geluidsmeter en lokale
+Nederlandse transcriptie via faster-whisper. Modellen: tiny, base en small.
+Zie [spraakherkenning starten](docs/speech.md).
 Audio wordt in fragmenten van vijf seconden tijdelijk in geheugen verzameld.
 Daarnaast werkt de tekstdemo met fictieve tekst, expliciet gestructureerde feiten en
 voorbeeldvragen bij ontbrekende of onduidelijke informatie. Vier toestanden:
@@ -15,17 +17,17 @@ informatie. Uitspraken over anderen of het verleden vullen actuele patiëntfeite
 niet in. Tegenstrijdige statussen vragen om verduidelijking.
 
 **Dit is een architectuurdemo.** Vrije gesprekstekst wordt nog niet door AI
-geïnterpreteerd; spraakherkenning, lichamelijke-testadviezen en
+geïnterpreteerd; lichamelijke-testadviezen en
 verwijsadviezen zijn nog niet geïmplementeerd. De kennis bevat alleen expliciet
 ongereviewde demonstratievragen, geen klinische richtlijnregels.
 
 ## Starten op Windows
 
 Gebruik Python 3.10 of nieuwer met Tkinter. Open de terminal in deze projectmap.
-Installeer de optionele microfoonafhankelijkheid en start de app:
+Installeer de optionele spraak- en microfoonafhankelijkheden en start de app:
 
 ```powershell
-python -m pip install -e ".[audio]"
+python -m pip install -e ".[speech]"
 python main.py
 ```
 
@@ -36,7 +38,8 @@ python main.py --demo
 python -m unittest discover -s tests -v
 ```
 
-De tekstdemo gebruikt alleen de standaardbibliotheek en werkt ook zonder de audio-extra.
+De tekstdemo gebruikt alleen de standaardbibliotheek en werkt ook zonder de audio- of speech-extra.
+Voor alleen microfoontesten volstaat `python -m pip install -e ".[audio]"`.
 Optioneel installeren als pakket zonder microfoonondersteuning:
 
 ```powershell
@@ -69,7 +72,7 @@ Zie [architectuur](docs/architecture.md) voor uitbreiding.
 Installeer PyInstaller in de ontwikkelomgeving op Windows:
 
 ```powershell
-python -m pip install -e ".[audio]"
+python -m pip install -e ".[speech]"
 python -m pip install pyinstaller
 powershell -ExecutionPolicy Bypass -File scripts/build_windows.ps1
 ```
@@ -85,14 +88,16 @@ latere STT/AI-versies worden apart beheerd.
 1. Architectuur en fictieve testconsulten (deze versie).
 2. Eén klachtmodule met controleerbare bronnen en beoordeelde regels.
 3. Lokale AI-extractie met bewijsfragmenten; vergelijk tegen handmatig gelabelde consulten.
-4. Microfoon en lokale transcriptie, daarna prestatie- en foutmetingen op de laptop.
+4. Microfoon en lokale transcriptie (aanwezig); prestatie- en foutmetingen op de laptop volgen.
 5. Klinische test-/overleg-/verwijssuggesties met bron, onzekerheid en urgentie.
 6. Windows-distributie en lokale gebruikstest.
 
-De huidige app schrijft geen consulten of audio naar bestanden en doet geen netwerkverzoeken.
+De huidige app schrijft geen consulten of audio naar bestanden. Alleen de expliciete
+modeldownload gebruikt internet; gesprekken worden volledig lokaal verwerkt.
 De laatste maximaal zes volledige audiofragmenten (circa 30 seconden) plus een
 onvolledig fragment blijven in geheugen; oudere fragmenten worden vervangen.
-Bij stoppen/sluiten worden de audiobuffers leeggemaakt. Dit is nog geen volledige
+Bij Stop wordt resterende audio getranscribeerd en de opnamebuffer geleegd;
+bij sluiten wordt resterende audio verworpen. Tekst blijft na Stop zichtbaar. Bij achterstand kan de buffer fragmenten verliezen; dit wordt gemeld. Dit is geen volledige
 consultopname en geen garantie van forensisch wissen uit RAM.
 Zie [microfoon testen](docs/microphone.md) voor de praktijktest.
 Gebruik fictieve gegevens voor ontwikkeltests. Opnames, patiëntgegevens en
